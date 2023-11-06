@@ -1,6 +1,7 @@
-import 'package:online_pet_shop/view/login_view.dart';
+
 
 import '../../view/dashboard_view.dart';
+import '../../view/login_view.dart';
 
 
 class AppRoute{
@@ -14,7 +15,8 @@ class AppRoute{
   static getApplicationRoute(){
     return{
       dashboradRoute: (context) => const DashboardView(),
-      loginRoute: (context) => const LoginPage(),
+      loginRoute: (context) =>  LoginPage(),
+
 
 
     };
