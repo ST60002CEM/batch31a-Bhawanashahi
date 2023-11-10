@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:online_pet_shop/view/costs.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -12,89 +14,77 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size= MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login Page'),
-      ),
       body: Container(
-        color: Colors.white, // Background color
-        child: Center(
+        height: double.maxFinite,
+        decoration: BoxDecoration(
+          color: Colors.white,
+                  ),
+        child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding:EdgeInsets.all(size.height*0.030),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset(
-                  'assets/images/logo.png', // Replace with your logo image asset path
-                  width: 100,
-                  height: 100,
-                ),
-                SizedBox(height: 20),
-                buildTextField(
-                  controller: emailController,
-                  labelText: 'Email',
-                  icon: Icons.email,
-                ),
-                SizedBox(height: 20),
-                buildTextField(
-                  controller: passwordController,
-                  labelText: 'Password',
-                  icon: Icons.lock,
-                  obscureText: true,
-                ),
-                SizedBox(height: 20),
-                TextButton(
-                  onPressed: () {
-                    // Implement your "Forgot Password" logic here
-                  },
-                  child: Text('Forgot Password'),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    // Implement your login logic here
-                    String email = emailController.text;
-                    String password = passwordController.text;
-                    print('Email: $email, Password: $password');
-                  },
-                  child: Text('Login'),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Don't have an account?"),
-                    TextButton(
-                      onPressed: () {
-                        // Implement your "Sign Up" logic here
-                      },
-                      child: Text('Sign up'),
+              children: [
+                Image.asset( 'assets/images/logo.png'),
+               SizedBox(
+                 height: size.height*0.024
+               ),
+                 
+                 TextField(
+                   keyboardType: TextInputType.text,
+                  style: const TextStyle(color: Colors.black ),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: 25.0),
+                    filled: true,
+                    hintText: "Email",
+                    prefixIcon: IconButton(
+                      onPressed: (){},
+                        icon: Image.asset(userIcon),
+                      
                     ),
-                  ],
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(37),
+
+                    )
+                  ),
                 ),
+                 SizedBox(
+                   height: size.height*0.015,
+                 ),
+                 TextField(
+                   obscureText: true,
+                   keyboardType: TextInputType.text,
+                   style: const TextStyle(color: Colors.black),
+                   decoration: InputDecoration(
+                     filled: true,
+                     hintText: "Password",
+                       prefixIcon: IconButton(
+                         onPressed: (){},
+                         icon: Image.asset(keyIcon),
+
+                       ),
+                     fillColor: Colors.white,
+                     border: OutlineInputBorder(
+                       borderSide: BorderSide(color: Colors.black),
+                       borderRadius: BorderRadius.circular(37),
+                     )
+                   ),
+                 )
+                
               ],
+
             ),
+            
           ),
         ),
+        
       ),
+
+
     );
   }
 
-  Widget buildTextField({
-    required TextEditingController controller,
-    required String labelText,
-    required IconData icon,
-    bool obscureText = false,
-  }) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: labelText,
-        filled: true,
-        fillColor: Colors.white,
-        prefixIcon: Icon(icon),
-      ),
-      obscureText: obscureText,
-    );
-  }
 }
