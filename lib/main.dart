@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:online_pet_shop/view/homepage_view.dart';
 import 'package:online_pet_shop/view/login_view.dart';
 import 'package:online_pet_shop/view/signup_view.dart';
+import 'package:online_pet_shop/view/splashscreen_view.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: SplashScreen(),
     );
   }
 }
