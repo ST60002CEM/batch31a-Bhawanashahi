@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_pet_shop/view/homepage_view.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -108,7 +109,10 @@ class _LoginPageState extends State<LoginPage> {
         ),
         color: Color.fromRGBO(216, 129, 47, 20),
         padding: EdgeInsets.symmetric(vertical: 18.0),
-        onPressed: () => {},
+        onPressed: () => {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>Homepage()),)
+        },
         child: Text(
           "LOGIN",
           style: TextStyle(

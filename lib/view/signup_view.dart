@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_pet_shop/view/login_view.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -199,7 +200,10 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         color: Color.fromRGBO(216, 129, 47, 20),
         padding: EdgeInsets.symmetric(vertical: 18.0),
-        onPressed: () => {},
+        onPressed: () => {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>LoginPage()),)
+        },
         child: Text(
           "SIGN UP",
           style: TextStyle(
@@ -210,6 +214,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+
   }
 
   Widget _buildExistingUserTextField() {
@@ -228,7 +233,8 @@ class _SignUpPageState extends State<SignUpPage> {
           width: 5.0,
         ),
         GestureDetector(
-          onTap: () => {},
+          onTap: () => {
+          },
           child: Text(
             "SignIn",
             style: TextStyle(
@@ -259,8 +265,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
                     "assets/images/logo.png",
-                    width: 150,
-                    height: 150,
+                    width: 600,
+                    height: 400,
                   ),
                 ),
               ),
