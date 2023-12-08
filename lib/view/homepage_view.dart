@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  const Homepage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,29 +15,27 @@ class Homepage extends StatelessWidget {
             Column(
               children: [
                 Icon(Icons.home_filled),
-                Text("Home")
+                Text("Home"),
               ],
             ),
             Column(
               children: [
                 Icon(Icons.category_rounded),
-                Text("Category")
+                Text("Category"),
               ],
             ),
             Column(
               children: [
                 Icon(Icons.add_shopping_cart),
-                Text("Cart")
+                Text("Cart"),
               ],
             ),
             Column(
               children: [
                 Icon(Icons.notification_add_rounded),
-                Text("Home")
+                Text("Notifications"),
               ],
             ),
-
-
           ],
         ),
       ),
@@ -53,23 +51,20 @@ class Homepage extends StatelessWidget {
                   width: 320,
                   child: TextField(
                     decoration: InputDecoration(
-                      prefixIcon:Icon(Icons.search) ,
+                      prefixIcon: Icon(Icons.search),
                       hintText: 'Search Pet and Pet Products..',
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color.fromRGBO(216, 129, 47, 20),),
+                        borderSide: const BorderSide(color: Color(0xffD8812F),),
                         borderRadius: BorderRadius.circular(30),
-                      )
-
-
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(width: 10,),
                 Image(
-
                   height: 50,
-                    width: 40,
-                    image: AssetImage('assets/images/pp.png')
+                  width: 40,
+                  image: AssetImage('assets/images/pp.png'),
                 ),
                 SizedBox(
                   width:10,
@@ -79,8 +74,8 @@ class Homepage extends StatelessWidget {
           ),
           Image(
               image: AssetImage(
-            'assets/images/banner.png'
-          )),
+                  'assets/images/banner.png'
+              )),
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Row(
@@ -104,7 +99,6 @@ class Homepage extends StatelessWidget {
                 )
               ],
             ),
-
           ),
           Padding(
             padding: const EdgeInsets.only(top: 0.0),
@@ -117,7 +111,6 @@ class Homepage extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                     color: Colors.black,
                   ),),
-
               ],
             ),
           ),
@@ -130,19 +123,15 @@ class Homepage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image(
-                         height:200,
+                          height:200,
                           width: 200,
                           image: AssetImage(
-                          'assets/images/rot.jfif')),
-
+                              'assets/images/rot.jfif')),
                     ],
                   ),
-
                 ),
-
               ],
             ),
-
           ),
           Padding(
             padding: const EdgeInsets.only(top: 0, right: 180, ),
@@ -185,13 +174,10 @@ class Homepage extends StatelessWidget {
                 ),
               ),
             ),
-          )
-
-
+          ),
 
         ],
       ),
-
     );
   }
 }
