@@ -119,6 +119,7 @@ class _LoginPageState extends State<LoginPage> {
             fontSize: 20.0,
             color: Colors.black,
             fontWeight: FontWeight.w500,
+            fontFamily: 'Montserrat Bold'
           ),
         ),
       ),
