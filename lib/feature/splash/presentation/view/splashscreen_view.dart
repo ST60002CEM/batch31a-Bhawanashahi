@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:online_pet_shop/view/homepage_view.dart';
+import 'package:online_pet_shop/feature/home/presentation/view/homepage_view.dart';
 import 'package:online_pet_shop/view/signup_view.dart';
 
 class SplashScreen extends StatefulWidget {

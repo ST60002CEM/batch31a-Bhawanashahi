@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_pet_shop/view/homepage_view.dart';
+import 'package:online_pet_shop/feature/home/presentation/view/homepage_view.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
