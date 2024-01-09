@@ -17,8 +17,8 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final _key = GlobalKey<FormState>();
   final _fnameController = TextEditingController(text: 'Bhawana');
   final _lnameController = TextEditingController(text: 'Shahi');
-  final _phoneController = TextEditingController(text: '9812345678');
-  final _usernameController = TextEditingController(text: 'bhawana');
+  final _emailController = TextEditingController(text: 'B@gmail.com');
+  // final _usernameController = TextEditingController(text: 'bhawana');
   final _passwordController = TextEditingController(text: 'bhawana12');
 
   // final _fnameController = TextEditingController();
@@ -27,7 +27,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   // final _usernameController = TextEditingController();
   // final _passwordController = TextEditingController();
   //
-  // bool isObscure = true;
+  bool isObscure = true;
   // BatchEntity? selectedBatch;
   // List<CourseEntity>lstCourseSelected=[];
   @override
@@ -35,10 +35,6 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
     // final batchState= ref.watch(batchViewModelProvider);
     // final courseState= ref.watch(courseViewModelProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register'),
-        centerTitle: true,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -79,24 +75,27 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                       );
                     },
                     child: const SizedBox(
-                      height: 200,
-                      width: 200,
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage:
-                            AssetImage('assets/images/profile.png'),
-                        // backgroundImage: _img != null
-                        //     ? FileImage(_img!)
-                        //     : const AssetImage('assets/images/profile.png')
-                        //         as ImageProvider,
+                      height:300,
+                      width: 300,
+                      child: ClipOval(
+                        child: Image(
+                          width: 300, // Set the desired width
+                          height: 300, // Set the desired height
+                           // Adjust the BoxFit as needed
+                          image: AssetImage('assets/images/logos.png'),
+                          // image: _img != null
+                          //   ? FileImage(_img!)
+                          //   : AssetImage('assets/images/profile.png'),
+                        ),
                       ),
+
                     ),
                   ),
                   const SizedBox(height: 25),
                   TextFormField(
                     controller: _fnameController,
                     decoration: const InputDecoration(
-                      labelText: 'First Name',
+
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
@@ -109,7 +108,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   TextFormField(
                     controller: _lnameController,
                     decoration: const InputDecoration(
-                      labelText: 'Last Name',
+
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
@@ -120,13 +119,13 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   ),
                   _gap,
                   TextFormField(
-                    controller: _phoneController,
+                    controller: _emailController,
                     decoration: const InputDecoration(
-                      labelText: 'Phone No',
+
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter phoneNo';
+                        return 'Please enter email';
                       }
                       return null;
                     }),
@@ -183,25 +182,25 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   //   }
                   //   return null;
                   // })),
-                  _gap,
-                  TextFormField(
-                    controller: _usernameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Username',
-                    ),
-                    validator: ((value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter username';
-                      }
-                      return null;
-                    }),
-                  ),
+                  // _gap,
+                  // TextFormField(
+                  //   controller: _usernameController,
+                  //   decoration: const InputDecoration(
+                  //     labelText: 'Username',
+                  //   ),
+                  //   validator: ((value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Please enter username';
+                  //     }
+                  //     return null;
+                  //   }),
+                  // ),
                   _gap,
                   TextFormField(
                     controller: _passwordController,
                     obscureText: isObscure,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+
                       suffixIcon: IconButton(
                         icon: Icon(
                           isObscure ? Icons.visibility : Icons.visibility_off,
@@ -224,9 +223,18 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
 
                   ElevatedButton(
                     onPressed: () {
-                      if (_key.currentState!.validate()) {}
+                      if (_key.currentState!.validate()) {
+                        // Perform the desired action when the button is pressed and the form is valid
+                      }
                     },
-                    child: const Text('Register'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFFD8812F), // Set the background color to D8812F
+                      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 90.0), // Adjust the padding to increase the size
+                    ),
+                    child: const Text(
+                      'SIGN UP',
+                      style: TextStyle(fontSize: 24.0), // Adjust the font size
+                    ),
                   ),
                 ],
               ),
