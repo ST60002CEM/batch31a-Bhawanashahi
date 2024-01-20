@@ -3,6 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
+import '../../../../core/common/snackbar/my_snackbar.dart';
+import '../../domain/entity/auth_entity.dart';
+import '../auth_viewmodel/auth_viewmodel.dart';
+
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
@@ -32,9 +36,30 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   // List<CourseEntity>lstCourseSelected=[];
   @override
   Widget build(BuildContext context) {
+    // final isConnected = ref.watch(connectivityStatusProvider);
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   if (isConnected == ConnectivityStatus.isDisconnected) {
+    //     showSnackBar(
+    //         message: 'No Internet Connection',
+    //         context: context,
+    //         color: Colors.red);
+    //   } else if (isConnected == ConnectivityStatus.isConnected) {
+    //     showSnackBar(message: 'You are online', context: context);
+    //   }
+
+      if (ref.watch(authViewModelProvider).showMessage!) {
+        showSnackBar(
+            message: 'Student Registerd Successfully', context: context);
+        ref.read(authViewModelProvider.notifier).resetMessage();
+      }
+
     // final batchState= ref.watch(batchViewModelProvider);
     // final courseState= ref.watch(courseViewModelProvider);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Register'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -118,19 +143,19 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     }),
                   ),
                   _gap,
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-
-                    ),
-                    validator: ((value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter email';
-                      }
-                      return null;
-                    }),
-                  ),
-                  _gap,
+                  // TextFormField(
+                  //   controller: _emailController,
+                  //   decoration: const InputDecoration(
+                  //
+                  //   ),
+                  //   validator: ((value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Please enter email';
+                  //     }
+                  //     return null;
+                  //   }),
+                  // ),
+                  // _gap,
                   // DropDown
                   // batchState.isLoading
                   // ? const Center(child: CircularProgressIndicator())
@@ -182,19 +207,19 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   //   }
                   //   return null;
                   // })),
-                  // _gap,
-                  // TextFormField(
-                  //   controller: _usernameController,
-                  //   decoration: const InputDecoration(
-                  //     labelText: 'Username',
-                  //   ),
-                  //   validator: ((value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Please enter username';
-                  //     }
-                  //     return null;
-                  //   }),
-                  // ),
+                   _gap,
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      labelText: 'email',
+                    ),
+                    validator: ((value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter email';
+                      }
+                      return null;
+                    }),
+                  ),
                   _gap,
                   TextFormField(
                     controller: _passwordController,
@@ -221,19 +246,30 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   ),
                   _gap,
 
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_key.currentState!.validate()) {
-                        // Perform the desired action when the button is pressed and the form is valid
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFD8812F), // Set the background color to D8812F
-                      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 90.0), // Adjust the padding to increase the size
-                    ),
-                    child: const Text(
-                      'SIGN UP',
-                      style: TextStyle(fontSize: 24.0), // Adjust the font size
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_key.currentState!.validate()) {
+                          final entity = AuthEntity(
+                            fname: _fnameController.text.trim(),
+                            lname: _lnameController.text.trim(),
+                            // phone: _phoneController.text.trim(),
+                            // batch: selectedBatch!,
+                            // courses: _lstCourseSelected,
+                            // image:
+                            // ref.read(authViewModelProvider).imageName ?? '',
+                            email:
+                            _emailController.text.trim().toLowerCase(),
+                            password: _emailController.text,
+                          );
+                          // Register user
+                          ref
+                              .read(authViewModelProvider.notifier)
+                              .registerStudent(entity);
+                        }
+                      },
+                      child: const Text('Register'),
                     ),
                   ),
                 ],

@@ -20,7 +20,8 @@ class ApiEndpoints {
   static const String imageUrl = "http://10.0.2.2:3000/uploads/";
   static const String uploadImage = "auth/uploadImage";
 
-  // ====================== Batch Routes ======================
+
+// ====================== Batch Routes ======================
   // static const String createBatch = "batch/createBatch";
   // static const String getAllBatch = "batch/getAllBatches";
 

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config/router/app_route.dart';
+import '../../../../core/common/snackbar/my_snackbar.dart';
+import '../auth_viewmodel/auth_viewmodel.dart';
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -14,13 +16,20 @@ class LoginView extends ConsumerStatefulWidget {
 
 class _LoginViewState extends ConsumerState<LoginView> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController(text: 'B@gmail.com');
+  final _emailController = TextEditingController(text: 'B@gmail.com');
   final _passwordController = TextEditingController(text: 'bhawana12');
 
   bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authViewModelProvider);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (authState.showMessage! && authState.error != null) {
+        showSnackBar(message: 'Invalid Credentials', context: context);
+        ref.read(authViewModelProvider.notifier).resetMessage();
+      }
+    });
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -50,13 +59,15 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       children: [
                         TextFormField(
                           key: const ValueKey('email'),
-                          controller: _usernameController,
+                          controller: _emailController,
+                          obscureText: isObscure,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Email',
+
                           ),
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return 'Please enter email';
                             }
                             return null;
@@ -93,8 +104,13 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         ElevatedButton(
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.pushNamed(
-                                  context, AppRoute.homeRoute);
+                              await ref
+                                  .read(authViewModelProvider.notifier)
+                                  .loginStudent(
+                                context,
+                                _emailController.text,
+                                _passwordController.text,
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(

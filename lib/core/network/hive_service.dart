@@ -2,6 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../config/constant/hive_table_constant.dart';
+import '../../feature/auth/data/model/auth_hive_model.dart';
+
 final hiveServiceProvider = Provider<HiveService>((ref) => HiveService());
 
 class HiveService {
@@ -34,4 +37,39 @@ class HiveService {
   //   var box = await Hive.openBox<CourseHiveModel>(HiveTableConstant.courseBox);
   //   return box.values.toList();
   // }
+  Future<void> registerStudent(AuthHiveModel auth) async {
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.userBox);
+    await box.put(auth.id, auth);
+  }
+
+  // Login
+  Future<bool> loginStudent(String username, String password) async {
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.userBox);
+    var auths = box.values.toList();
+    var auth = auths.firstWhere(
+          (element) => element.email == username && element.password == password,
+      orElse: () => AuthHiveModel.empty(),
+    );
+
+    if (auth == AuthHiveModel.empty()) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+
+  Future<void> deleteStudent(String studentId) async {
+    // var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
+    // await box.delete(studentId);
+  }
+
+  // Delete hive
+  Future<void> deleteHive() async {
+    // await Hive.deleteBoxFromDisk(HiveTableConstant.studentBox);
+    // await Hive.deleteBoxFromDisk(HiveTableConstant.batchBox);
+    // await Hive.deleteBoxFromDisk(HiveTableConstant.courseBox);
+
+}
+
 }
