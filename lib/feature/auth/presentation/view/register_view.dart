@@ -21,6 +21,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final _key = GlobalKey<FormState>();
   final _fnameController = TextEditingController(text: 'Bhawana');
   final _lnameController = TextEditingController(text: 'Shahi');
+  final _phoneController = TextEditingController(text: '9800000');
   final _emailController = TextEditingController(text: 'B@gmail.com');
   // final _usernameController = TextEditingController(text: 'bhawana');
   final _passwordController = TextEditingController(text: 'bhawana12');
@@ -32,8 +33,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   // final _passwordController = TextEditingController();
   //
   bool isObscure = true;
-  // BatchEntity? selectedBatch;
-  // List<CourseEntity>lstCourseSelected=[];
+
   @override
   Widget build(BuildContext context) {
     // final isConnected = ref.watch(connectivityStatusProvider);
@@ -120,6 +120,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   TextFormField(
                     controller: _fnameController,
                     decoration: const InputDecoration(
+                      labelText: 'First Name',
 
                     ),
                     validator: ((value) {
@@ -133,6 +134,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   TextFormField(
                     controller: _lnameController,
                     decoration: const InputDecoration(
+                      labelText: 'Last Name',
 
                     ),
                     validator: ((value) {
@@ -143,70 +145,20 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     }),
                   ),
                   _gap,
-                  // TextFormField(
-                  //   controller: _emailController,
-                  //   decoration: const InputDecoration(
-                  //
-                  //   ),
-                  //   validator: ((value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Please enter email';
-                  //     }
-                  //     return null;
-                  //   }),
-                  // ),
-                  // _gap,
-                  // DropDown
-                  // batchState.isLoading
-                  // ? const Center(child: CircularProgressIndicator())
-                  // :DropdownButtonFormField(
-                  //     hint:const Text('Select Batch') ,
-                  //     items: batchState.batches
-                  // .map((batch) => DropdownMenuItem<BatchEntity>
-                  //       (value: batch,
-                  //     child: Text(batch.batchName),),
-                  //     )
-                  // .toList(),
-                  // onChanged: (value){
-                  //       selectedBatch=value;
-                  // },
-                  // decoration: const InputDecoration(
-                  //   labelText: 'Select Batch',
-                  // ),),
-                  // _gap,
-                  // // Multi Checkbox
-                  // courseState.isLoading
-                  // ? const Center(
-                  //   child: CircularProgressIndicator(),
-                  // )
-                  // : MultiSelectDialogField(
-                  //     title: const Text('Select Course(s)'),
-                  //     items: courseState.courses
-                  // .map((course) => MultiSelectItem(
-                  //         course,
-                  //         course.courseName,
-                  //     ),
-                  //     )
-                  // .toList(),
-                  // listType: MultiSelectListType.CHIP,
-                  // buttonText: const Text('Select course(s)'),
-                  // buttonIcon: const Icon(Icons.search),
-                  // onConfirm: (values){
-                  //       lstCourseSelected.clear();
-                  //       lstCourseSelected.addAll(values);
-                  // },
-                  // decoration: BoxDecoration(
-                  //   border: Border.all(
-                  //     color: Colors.grey,
-                  //   ),
-                  //   borderRadius: BorderRadius.circular(5),
-                  // ),
-                  // validator: ((value){
-                  //   if(value == null || value.isEmpty){
-                  //     return 'Please select course(s)';
-                  //   }
-                  //   return null;
-                  // })),
+                  TextFormField(
+                    controller: _phoneController,
+                    decoration: const InputDecoration(
+                      labelText: 'PhoneNo',
+
+                    ),
+                    validator: ((value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter Phone:No';
+                      }
+                      return null;
+                    }),
+                  ),
+
                    _gap,
                   TextFormField(
                     controller: _emailController,
@@ -225,6 +177,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     controller: _passwordController,
                     obscureText: isObscure,
                     decoration: InputDecoration(
+                      labelText: 'password',
 
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -254,6 +207,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                           final entity = AuthEntity(
                             fname: _fnameController.text.trim(),
                             lname: _lnameController.text.trim(),
+                            phone: _phoneController.text.trim(),
                             // phone: _phoneController.text.trim(),
                             // batch: selectedBatch!,
                             // courses: _lstCourseSelected,

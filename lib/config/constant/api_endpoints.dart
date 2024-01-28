@@ -14,9 +14,9 @@ class ApiEndpoints {
   static const String register = "auth/register";
   static const String getAllStudent = "auth/getAllStudents";
   static const String getStudentsByBatch = "auth/getStudentsByBatch/";
-  static const String getStudentsByCourse = "auth/getStudentsByCourse/";
-  static const String updateStudent = "auth/updateStudent/";
-  static const String deleteStudent = "auth/deleteStudent/";
+  static const String getContact = "auth/getContact/";
+  static const String update= "auth/update/";
+  static const String delete = "auth/delete/";
   static const String imageUrl = "http://10.0.2.2:3000/uploads/";
   static const String uploadImage = "auth/uploadImage";
 
@@ -26,7 +26,7 @@ class ApiEndpoints {
   // static const String getAllBatch = "batch/getAllBatches";
 
   // ====================== Course Routes ======================
-  // static const String createCourse = "course/createCourse";
-  // static const String deleteCourse = "course/";
-  // static const String getAllCourse = "course/getAllCourse";
+  static const String createContact = "contact/createContact";
+  static const String deleteContact = "contact/";
+  static const String getAllContact = "contact/getAllContact";
 }

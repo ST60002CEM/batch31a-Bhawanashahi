@@ -120,7 +120,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                             height: 50,
                             child: Center(
                               child: Text(
-                                'LOGIN',
+                                'Login',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'Brand Bold',
@@ -134,7 +134,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           key: const ValueKey('registerButton'),
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, AppRoute.registerRoute);
+                                context, AppRoute.contactRoute);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFFD8812F), // Set the background color to D8812F

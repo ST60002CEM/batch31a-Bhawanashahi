@@ -56,14 +56,15 @@ class AuthRemoteDataSource {
     }
   }
 
-  Future<Either<Failure, bool>> registerStudent(AuthEntity student) async {
+  Future<Either<Failure, bool>> registerStudent(AuthEntity user) async {
     try {
-      AuthApiModel apiModel = AuthApiModel.fromEntity(student);
+      AuthApiModel apiModel = AuthApiModel.fromEntity(user);
       Response response = await dio.post(
         ApiEndpoints.register,
         data: {
           "fname": apiModel.fname,
           "lname": apiModel.lname,
+          "phone": apiModel.phone,
           "image": apiModel.image,
           "email": apiModel.email,
           "password": apiModel.password,

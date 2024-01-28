@@ -35,7 +35,7 @@ class AuthLocalDataSource {
     if (isLogin) {
       return const Right(true);
     } else {
-      return Left(Failure(error: "Invalid username or password"));
+      return Left(Failure(error: "Invalid email or password"));
     }
   }
 }

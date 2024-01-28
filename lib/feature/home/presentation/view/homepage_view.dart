@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:online_pet_shop/feature/cart/presentation/view/cart_view.dart';
+
+import '../../../../config/router/app_route.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key});
@@ -26,9 +29,11 @@ class Homepage extends StatelessWidget {
             ),
             Column(
               children: [
+
                 Icon(Icons.add_shopping_cart),
                 Text("Cart"),
-              ],
+
+      ],
             ),
             Column(
               children: [
@@ -173,7 +178,11 @@ class Homepage extends StatelessWidget {
                   ),
                 ),
               ),
+
             ),
+
+
+
           ),
 
         ],
