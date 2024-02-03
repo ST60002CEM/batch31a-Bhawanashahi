@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:online_pet_shop/core/failure/failure.dart';
+import 'package:online_pet_shop/core/network/hive_service.dart';
+import 'package:online_pet_shop/feature/auth/data/model/auth_hive_model.dart';
+import 'package:online_pet_shop/feature/auth/domain/entity/auth_entity.dart';
 
-import '../../../../core/failure/failure.dart';
-import '../../../../core/network/hive_service.dart';
-import '../../domain/entity/auth_entity.dart';
-import '../model/auth_hive_model.dart';
 
 final authLocalDataSourceProvider = Provider<AuthLocalDataSource>(
-      (ref) => AuthLocalDataSource(ref.watch(hiveServiceProvider)),
+  (ref) => AuthLocalDataSource(ref.watch(hiveServiceProvider)),
 );
 
 class AuthLocalDataSource {
@@ -28,16 +28,14 @@ class AuthLocalDataSource {
   }
 
   Future<Either<Failure, bool>> loginStudent(
-      String email,
-      String password,
-      ) async {
-    var isLogin = await _hiveService.loginStudent(email, password);
+    String username,
+    String password,
+  ) async {
+    var isLogin = await _hiveService.loginStudent(username, password);
     if (isLogin) {
       return const Right(true);
     } else {
-      return Left(Failure(error: "Invalid email or password"));
+      return Left(Failure(error: "Invalid username or password"));
     }
   }
 }
-
-

@@ -7,22 +7,20 @@ part of 'auth_api_model.dart';
 // **************************************************************************
 
 AuthApiModel _$AuthApiModelFromJson(Map<String, dynamic> json) => AuthApiModel(
-      id: json['_id'] as String?,
+      studentId: json['_id'] as String?,
       fname: json['fname'] as String,
       lname: json['lname'] as String,
       phone: json['phone'] as String,
-      image: json['image'] as String?,
-      email: json['email'] as String,
+      username: json['username'] as String,
       password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$AuthApiModelToJson(AuthApiModel instance) =>
     <String, dynamic>{
-      '_id': instance.id,
+      '_id': instance.studentId,
       'fname': instance.fname,
       'lname': instance.lname,
       'phone': instance.phone,
-      'image': instance.image,
-      'email': instance.email,
+      'username': instance.username,
       'password': instance.password,
     };

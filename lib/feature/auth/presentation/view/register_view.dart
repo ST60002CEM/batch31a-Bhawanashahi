@@ -1,60 +1,83 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
 
-import '../../../../core/common/snackbar/my_snackbar.dart';
-import '../../domain/entity/auth_entity.dart';
-import '../auth_viewmodel/auth_viewmodel.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:online_pet_shop/core/common/provider/is_network_provider.dart';
+import 'package:online_pet_shop/core/common/snackbar/my_snackbar.dart';
+import 'package:online_pet_shop/feature/auth/domain/entity/auth_entity.dart';
+import 'package:online_pet_shop/feature/auth/presentation/auth_viewmodel/auth_viewmodel.dart';
+
 
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
 
   @override
-  ConsumerState<RegisterView> createState() => _RegisterViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterViewState();
 }
 
 class _RegisterViewState extends ConsumerState<RegisterView> {
   final _gap = const SizedBox(height: 8);
 
   final _key = GlobalKey<FormState>();
-  final _fnameController = TextEditingController(text: 'Bhawana');
-  final _lnameController = TextEditingController(text: 'Shahi');
-  final _phoneController = TextEditingController(text: '9800000');
-  final _emailController = TextEditingController(text: 'B@gmail.com');
-  // final _usernameController = TextEditingController(text: 'bhawana');
-  final _passwordController = TextEditingController(text: 'bhawana12');
+  final _fnameController = TextEditingController(text: 'Zoro');
+  final _lnameController = TextEditingController(text: 'Roronoa');
+  final _phoneController = TextEditingController(text: '9812345678');
+  final _usernameController = TextEditingController(text: 'zoro');
+  final _passwordController = TextEditingController(text: 'zoro123');
 
-  // final _fnameController = TextEditingController();
-  // final _lnameController = TextEditingController();
-  // final _phoneController = TextEditingController();
-  // final _usernameController = TextEditingController();
-  // final _passwordController = TextEditingController();
-  //
   bool isObscure = true;
+
+  // BatchEntity? selectedBatch;
+  // final List<CourseEntity> _lstCourseSelected = [];
+
+  // Check for the camera permission
+  // checkCameraPermission() async {
+  //   if (await Permission.camera.request().isRestricted ||
+  //       await Permission.camera.request().isDenied) {
+  //     await Permission.camera.request();
+  //   }
+  // }
+
+  // File? _img;
+  // Future _browseImage(ImageSource imageSource) async {
+  //   try {
+  //     final image = await ImagePicker().pickImage(source: imageSource);
+  //     if (image != null) {
+  //       _img = File(image.path);
+  //       ref.read(authViewModelProvider.notifier).uploadImage(_img!);
+  //     } else {
+  //       return;
+  //     }
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // final isConnected = ref.watch(connectivityStatusProvider);
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   if (isConnected == ConnectivityStatus.isDisconnected) {
-    //     showSnackBar(
-    //         message: 'No Internet Connection',
-    //         context: context,
-    //         color: Colors.red);
-    //   } else if (isConnected == ConnectivityStatus.isConnected) {
-    //     showSnackBar(message: 'You are online', context: context);
-    //   }
+    // final batchState = ref.watch(batchViewModelProvider);
+    // final courseState = ref.watch(courseViewModelProvider);
+    final isConnected = ref.watch(connectivityStatusProvider);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (isConnected == ConnectivityStatus.isDisconnected) {
+        showSnackBar(
+            message: 'No Internet Connection',
+            context: context,
+            color: Colors.red);
+      } else if (isConnected == ConnectivityStatus.isConnected) {
+        showSnackBar(message: 'You are online', context: context);
+      }
 
       if (ref.watch(authViewModelProvider).showMessage!) {
         showSnackBar(
             message: 'Student Registerd Successfully', context: context);
         ref.read(authViewModelProvider.notifier).resetMessage();
       }
+    });
 
-    // final batchState= ref.watch(batchViewModelProvider);
-    // final courseState= ref.watch(courseViewModelProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register'),
@@ -84,36 +107,40 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              ElevatedButton.icon(
-                                onPressed: () {},
-                                icon: const Icon(Icons.camera),
-                                label: const Text('Camera'),
-                              ),
-                              ElevatedButton.icon(
-                                onPressed: () {},
-                                icon: const Icon(Icons.image),
-                                label: const Text('Gallery'),
-                              ),
+                              // ElevatedButton.icon(
+                              //   onPressed: () {
+                              //     checkCameraPermission();
+                              //     _browseImage(ImageSource.camera);
+                              //     Navigator.pop(context);
+                              //   },
+                              //   icon: const Icon(Icons.camera),
+                              //   label: const Text('Camera'),
+                              // ),
+                              // ElevatedButton.icon(
+                              //   onPressed: () {
+                              //     _browseImage(ImageSource.gallery);
+                              //     Navigator.pop(context);
+                              //   },
+                              //   icon: const Icon(Icons.image),
+                              //   label: const Text('Gallery'),
+                              // ),
                             ],
                           ),
                         ),
                       );
                     },
-                    child: const SizedBox(
-                      height:300,
-                      width: 300,
-                      child: ClipOval(
-                        child: Image(
-                          width: 300, // Set the desired width
-                          height: 300, // Set the desired height
-                           // Adjust the BoxFit as needed
-                          image: AssetImage('assets/images/logos.png'),
-                          // image: _img != null
-                          //   ? FileImage(_img!)
-                          //   : AssetImage('assets/images/profile.png'),
-                        ),
-                      ),
-
+                    child: SizedBox(
+                      height: 200,
+                      width: 200,
+                      // child: CircleAvatar(
+                      //   radius: 50,
+                      //   // backgroundImage:
+                      //   //     AssetImage('assets/images/profile.png'),
+                      //   backgroundImage: _img != null
+                      //       ? FileImage(_img!)
+                      //       : const AssetImage('assets/images/logo.png')
+                      //           as ImageProvider,
+                      // ),
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -121,7 +148,6 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     controller: _fnameController,
                     decoration: const InputDecoration(
                       labelText: 'First Name',
-
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
@@ -135,7 +161,6 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     controller: _lnameController,
                     decoration: const InputDecoration(
                       labelText: 'Last Name',
-
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
@@ -148,26 +173,79 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   TextFormField(
                     controller: _phoneController,
                     decoration: const InputDecoration(
-                      labelText: 'PhoneNo',
-
+                      labelText: 'Phone No',
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter Phone:No';
+                        return 'Please enter phoneNo';
                       }
                       return null;
                     }),
                   ),
-
-                   _gap,
+                  _gap,
+                  // batchState.isLoading
+                  //     ? const Center(child: CircularProgressIndicator())
+                  //     : DropdownButtonFormField(
+                  //         hint: const Text('Select batch'),
+                  //         items: batchState.batches
+                  //             .map(
+                  //               (batch) => DropdownMenuItem<BatchEntity>(
+                  //                 value: batch,
+                  //                 child: Text(batch.batchName),
+                  //               ),
+                  //             )
+                  //             .toList(),
+                  //         onChanged: (value) {
+                  //           selectedBatch = value;
+                  //         },
+                  //         decoration: const InputDecoration(
+                  //           labelText: 'Select Batch',
+                  //         ),
+                  //       ),
+                  // _gap,
+                  // courseState.isLoading
+                  //     ? const Center(
+                  //         child: CircularProgressIndicator(),
+                  //       )
+                  //     : MultiSelectDialogField(
+                  //         title: const Text('Select course(s)'),
+                  //         items: courseState.courses
+                  //             .map(
+                  //               (course) => MultiSelectItem(
+                  //                 course,
+                  //                 course.courseName,
+                  //               ),
+                  //             )
+                  //             .toList(),
+                  //         listType: MultiSelectListType.CHIP,
+                  //         buttonText: const Text('Select course(s)'),
+                  //         buttonIcon: const Icon(Icons.search),
+                  //         onConfirm: (values) {
+                  //           _lstCourseSelected.clear();
+                  //           _lstCourseSelected.addAll(values);
+                  //         },
+                  //         decoration: BoxDecoration(
+                  //           border: Border.all(
+                  //             color: Colors.grey,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(5),
+                  //         ),
+                  //         validator: ((value) {
+                  //           if (value == null || value.isEmpty) {
+                  //             return 'Please select courses';
+                  //           }
+                  //           return null;
+                  //         }),
+                  //       ),
+                  _gap,
                   TextFormField(
-                    controller: _emailController,
+                    controller: _usernameController,
                     decoration: const InputDecoration(
-                      labelText: 'email',
+                      labelText: 'Username',
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter email';
+                        return 'Please enter username';
                       }
                       return null;
                     }),
@@ -177,8 +255,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     controller: _passwordController,
                     obscureText: isObscure,
                     decoration: InputDecoration(
-                      labelText: 'password',
-
+                      labelText: 'Password',
                       suffixIcon: IconButton(
                         icon: Icon(
                           isObscure ? Icons.visibility : Icons.visibility_off,
@@ -198,7 +275,6 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     }),
                   ),
                   _gap,
-
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -208,14 +284,13 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                             fname: _fnameController.text.trim(),
                             lname: _lnameController.text.trim(),
                             phone: _phoneController.text.trim(),
-                            // phone: _phoneController.text.trim(),
                             // batch: selectedBatch!,
                             // courses: _lstCourseSelected,
                             // image:
-                            // ref.read(authViewModelProvider).imageName ?? '',
-                            email:
-                            _emailController.text.trim().toLowerCase(),
-                            password: _emailController.text,
+                            //     ref.read(authViewModelProvider).imageName ?? '',
+                            username:
+                                _usernameController.text.trim().toLowerCase(),
+                            password: _passwordController.text,
                           );
                           // Register user
                           ref

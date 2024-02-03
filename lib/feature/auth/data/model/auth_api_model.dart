@@ -1,30 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
-
-
-
-import '../../domain/entity/auth_entity.dart';
+import 'package:online_pet_shop/feature/auth/domain/entity/auth_entity.dart';
 
 part 'auth_api_model.g.dart';
 
 @JsonSerializable()
 class AuthApiModel {
   @JsonKey(name: '_id')
-  final String? id;
+  final String? studentId;
   final String fname;
   final String lname;
   final String phone;
-  final String? image;
-  final String email;
-
+  final String username;
   final String? password;
 
   AuthApiModel({
-    this.id,
+    this.studentId,
     required this.fname,
     required this.lname,
     required this.phone,
-    this.image,
-    required this.email,
+    required this.username,
     this.password,
   });
 
@@ -36,13 +30,13 @@ class AuthApiModel {
   // To entity
   factory AuthApiModel.toEntity(AuthApiModel apiModel) {
     return AuthApiModel(
-      id: apiModel.id,
+      studentId: apiModel.studentId,
       fname: apiModel.fname,
       lname: apiModel.lname,
-      phone: apiModel.phone,
-      image: apiModel.image,
-      email: apiModel.email,
 
+      phone: apiModel.phone,
+
+      username: apiModel.username,
       password: apiModel.password,
     );
   }
@@ -50,12 +44,13 @@ class AuthApiModel {
   // From entity
   factory AuthApiModel.fromEntity(AuthEntity entity) {
     return AuthApiModel(
-      id: entity.id,
+      studentId: entity.studentId,
       fname: entity.fname,
       lname: entity.lname,
+
       phone: entity.phone,
-      image: entity.image,
-      email: entity.email,
+  
+      username: entity.username,
       password: entity.password,
     );
   }

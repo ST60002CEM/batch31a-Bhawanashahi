@@ -30,7 +30,7 @@ class AppTheme {
         backgroundColor: ThemeConstant.appBarColor,
         centerTitle: true,
         titleTextStyle: TextStyle(
-          color: Colors.white,
+          color: Colors.orange,
           fontSize: 20,
         ),
       ),
@@ -39,7 +39,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          foregroundColor: Colors.white,
+          foregroundColor: Colors.black,
           backgroundColor: ThemeConstant.primaryColor,
           textStyle: const TextStyle(
             fontSize: 20,
@@ -75,7 +75,7 @@ class AppTheme {
       //Bottom navigation bar theme
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Color(0xD8812F),
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.orange,
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         elevation: 0,

@@ -23,7 +23,7 @@ class AppRoute {
       loginRoute: (context) => const LoginView(),
       homeRoute: (context) => const Homepage(),
       registerRoute: (context) => const RegisterView(),
-      contactRoute: (context) =>  AddContactView(),
+      // contactRoute: (context) =>  AddContactView(),
       CartRoute: (context) => CartView(),
       // batchStudentRoute: (context) => const BatchStudentView(null),
       // googleMapRoute: (context) => const GoogleMapView(),
