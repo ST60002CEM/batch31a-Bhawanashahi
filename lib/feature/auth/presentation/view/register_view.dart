@@ -1,15 +1,15 @@
 import 'dart:io';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:online_pet_shop/core/common/provider/is_network_provider.dart';
 import 'package:online_pet_shop/core/common/snackbar/my_snackbar.dart';
 import 'package:online_pet_shop/feature/auth/domain/entity/auth_entity.dart';
 import 'package:online_pet_shop/feature/auth/presentation/auth_viewmodel/auth_viewmodel.dart';
 
-
+import '../../../../config/router/app_route.dart';
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
@@ -30,36 +30,8 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
 
   bool isObscure = true;
 
-  // BatchEntity? selectedBatch;
-  // final List<CourseEntity> _lstCourseSelected = [];
-
-  // Check for the camera permission
-  // checkCameraPermission() async {
-  //   if (await Permission.camera.request().isRestricted ||
-  //       await Permission.camera.request().isDenied) {
-  //     await Permission.camera.request();
-  //   }
-  // }
-
-  // File? _img;
-  // Future _browseImage(ImageSource imageSource) async {
-  //   try {
-  //     final image = await ImagePicker().pickImage(source: imageSource);
-  //     if (image != null) {
-  //       _img = File(image.path);
-  //       ref.read(authViewModelProvider.notifier).uploadImage(_img!);
-  //     } else {
-  //       return;
-  //     }
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
-    // final batchState = ref.watch(batchViewModelProvider);
-    // final courseState = ref.watch(courseViewModelProvider);
     final isConnected = ref.watch(connectivityStatusProvider);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (isConnected == ConnectivityStatus.isDisconnected) {
@@ -80,7 +52,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text(''),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -91,56 +63,12 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
               key: _key,
               child: Column(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                        backgroundColor: Colors.grey[300],
-                        context: context,
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(20),
-                          ),
-                        ),
-                        builder: (context) => Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              // ElevatedButton.icon(
-                              //   onPressed: () {
-                              //     checkCameraPermission();
-                              //     _browseImage(ImageSource.camera);
-                              //     Navigator.pop(context);
-                              //   },
-                              //   icon: const Icon(Icons.camera),
-                              //   label: const Text('Camera'),
-                              // ),
-                              // ElevatedButton.icon(
-                              //   onPressed: () {
-                              //     _browseImage(ImageSource.gallery);
-                              //     Navigator.pop(context);
-                              //   },
-                              //   icon: const Icon(Icons.image),
-                              //   label: const Text('Gallery'),
-                              // ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                    child: SizedBox(
-                      height: 200,
-                      width: 200,
-                      // child: CircleAvatar(
-                      //   radius: 50,
-                      //   // backgroundImage:
-                      //   //     AssetImage('assets/images/profile.png'),
-                      //   backgroundImage: _img != null
-                      //       ? FileImage(_img!)
-                      //       : const AssetImage('assets/images/logo.png')
-                      //           as ImageProvider,
-                      // ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      width: 300, // Adjust width according to your needs
+                      height: 300, // Adjust height according to your needs
+                      child: Image.asset('assets/images/logo.png'),
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -182,61 +110,6 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                       return null;
                     }),
                   ),
-                  _gap,
-                  // batchState.isLoading
-                  //     ? const Center(child: CircularProgressIndicator())
-                  //     : DropdownButtonFormField(
-                  //         hint: const Text('Select batch'),
-                  //         items: batchState.batches
-                  //             .map(
-                  //               (batch) => DropdownMenuItem<BatchEntity>(
-                  //                 value: batch,
-                  //                 child: Text(batch.batchName),
-                  //               ),
-                  //             )
-                  //             .toList(),
-                  //         onChanged: (value) {
-                  //           selectedBatch = value;
-                  //         },
-                  //         decoration: const InputDecoration(
-                  //           labelText: 'Select Batch',
-                  //         ),
-                  //       ),
-                  // _gap,
-                  // courseState.isLoading
-                  //     ? const Center(
-                  //         child: CircularProgressIndicator(),
-                  //       )
-                  //     : MultiSelectDialogField(
-                  //         title: const Text('Select course(s)'),
-                  //         items: courseState.courses
-                  //             .map(
-                  //               (course) => MultiSelectItem(
-                  //                 course,
-                  //                 course.courseName,
-                  //               ),
-                  //             )
-                  //             .toList(),
-                  //         listType: MultiSelectListType.CHIP,
-                  //         buttonText: const Text('Select course(s)'),
-                  //         buttonIcon: const Icon(Icons.search),
-                  //         onConfirm: (values) {
-                  //           _lstCourseSelected.clear();
-                  //           _lstCourseSelected.addAll(values);
-                  //         },
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: Colors.grey,
-                  //           ),
-                  //           borderRadius: BorderRadius.circular(5),
-                  //         ),
-                  //         validator: ((value) {
-                  //           if (value == null || value.isEmpty) {
-                  //             return 'Please select courses';
-                  //           }
-                  //           return null;
-                  //         }),
-                  //       ),
                   _gap,
                   TextFormField(
                     controller: _usernameController,
@@ -284,21 +157,47 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                             fname: _fnameController.text.trim(),
                             lname: _lnameController.text.trim(),
                             phone: _phoneController.text.trim(),
-                            // batch: selectedBatch!,
-                            // courses: _lstCourseSelected,
-                            // image:
-                            //     ref.read(authViewModelProvider).imageName ?? '',
                             username:
-                                _usernameController.text.trim().toLowerCase(),
+                            _usernameController.text.trim().toLowerCase(),
                             password: _passwordController.text,
                           );
-                          // Register user
                           ref
                               .read(authViewModelProvider.notifier)
                               .registerStudent(entity);
                         }
                       },
-                      child: const Text('Register'),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFd8812F)),
+                      ),
+                      child: const Text('Register',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Brand Bold',
+                        ),),
+                    ),
+
+                  ),
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      text: "Already have an account? ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Sign In',
+                          style: TextStyle(
+                            color: Color(0xFFd8812F),
+                            fontWeight: FontWeight.bold,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, AppRoute.loginRoute);
+                            },
+                        ),
+                      ],
                     ),
                   ),
                 ],
