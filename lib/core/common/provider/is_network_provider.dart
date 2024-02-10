@@ -8,8 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 enum ConnectivityStatus { notDetermined, isConnected, isDisconnected }
 
 final connectivityStatusProvider =
-    StateNotifierProvider<ConnectivityStatusNotifier, ConnectivityStatus>(
-  (ref) => ConnectivityStatusNotifier(),
+StateNotifierProvider<ConnectivityStatusNotifier, ConnectivityStatus>(
+      (ref) => ConnectivityStatusNotifier(),
 );
 
 class ConnectivityStatusNotifier extends StateNotifier<ConnectivityStatus> {
