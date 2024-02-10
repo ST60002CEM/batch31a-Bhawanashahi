@@ -1,57 +1,52 @@
-// import 'package:json_annotation/json_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-// import '../../domain/entity/contact_entity.dart';
+import '../../domain/entity/contact_entity.dart';
 
 
-// part 'contact_api_model.g.dart';
+@JsonSerializable()
+class ContactAPIModel {
+  @JsonKey(name: '_id')
+  // Server ko name lai batchId sanga map gareko
+  final String? contactId;
+  // J name server ma cha tei name ya lekhne
+  final String contactName;
 
-// @JsonSerializable()
-// class ContactAPIModel {
-//   @JsonKey(name: '_id')
-//   final String? contactId;
-//   final String email;
-//   final String message;
+  final String message;
 
-//   ContactAPIModel({this.contactId, required this.email, required this.message});
+  ContactAPIModel({this.contactId, required this.contactName, required this.message});
 
-//   factory ContactAPIModel.fromJson(Map<String, dynamic> json) =>
-//       _$ContactAPIModelFromJson(json);
+  // To Json and fromJson without freezed
+  factory ContactAPIModel.fromJson(Map<String, dynamic> json) {
+    return ContactAPIModel(
+      contactId: json['_id'],
+      contactName: json['contactName'],
+      message: json['message'],
+    );
+  }
 
-//   Map<String, dynamic> toJson() => _$ContactAPIModelToJson(this);
+  Map<String, dynamic> toJson() {
+    return {
+      'contactName': contactName,
+      'message':message
 
-//   // From entity to model
-//   factory ContactAPIModel.fromEntity(ContactEntity entity) {
-//     return ContactAPIModel(
-//       contactId: entity.contactId,
-//       email: entity.email,
-//       message: entity.message
-//     );
-//   }
+    };
+  }
 
-//   // From model to entity
-//   static ContactEntity toEntity(ContactAPIModel model) {
-//     return ContactEntity(
-//       contactId: model.contactId,
-//       email: model.email,
-//       message: model.message
-//     );
-//   }
+  // From entity to model
+  factory ContactAPIModel.fromEntity(ContactEntity entity) {
+    return ContactAPIModel(
+      contactId: entity.contactId,
+      contactName: entity.contactName,
+      message: entity.message,
+    );
+  }
 
-//   ContactEntity toAEntity() =>
-//       ContactEntity(contactId: contactId, email: email, message:message);
-
-//   ContactAPIModel toHiveModel(ContactEntity entity) {
-//     return ContactAPIModel(
-//       contactId: entity.contactId,
-//       email: entity.email,
-//       message: entity.message
-//     );
-//   }
-
-//   List<ContactAPIModel> toHiveModelList(List<ContactEntity> entities) =>
-//       entities.map((entity) => toHiveModel(entity)).toList();
-
-//   List<ContactEntity> toEntityList(List<ContactAPIModel> models) =>
-//       models.map((model) => model.toAEntity()).toList();
- 
-// }
+  // From model to entity
+  static ContactEntity toEntity(ContactAPIModel model) {
+    return ContactEntity(
+      contactId: model.contactId,
+      contactName: model.contactName,
+      message: model.message,
+    );
+  }
+}

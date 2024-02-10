@@ -4,6 +4,8 @@ import 'package:online_pet_shop/config/constant/hive_table_constant.dart';
 import 'package:online_pet_shop/feature/auth/data/model/auth_hive_model.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../feature/contact/data/model/contact_hive_model.dart';
+
 
 // Create object using a provider
 final hiveServiceProvider = Provider<HiveService>(
@@ -22,21 +24,21 @@ class HiveService {
   }
 
   // // ======================== Batch Queries ========================
-  // Future<void> addBatch(BatchHiveModel batch) async {
-  //   var box = await Hive.openBox<BatchHiveModel>(HiveTableConstant.batchBox);
-  //   await box.put(batch.batchId, batch);
-  // }
+  Future<void> addBatch(ContactHiveModel contact) async {
+    var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
+    await box.put(contact.contactId, contact);
+  }
 
-  // Future<List<BatchHiveModel>> getAllBatches() async {
-  //   var box = await Hive.openBox<BatchHiveModel>(HiveTableConstant.batchBox);
-  //   var batches = box.values.toList();
-  //   return batches;
-  // }
+  Future<List<ContactHiveModel>> getAllContacts() async {
+    var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
+    var contacts = box.values.toList();
+    return contacts;
+  }
 
-  // Future<void> deleteBatch(String batchId) async {
-  //   var box = await Hive.openBox<BatchHiveModel>(HiveTableConstant.batchBox);
-  //   await box.delete(batchId);
-  // }
+  Future<void> deleteContact(String contactId) async {
+    var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
+    await box.delete(contactId);
+  }
 
   // // ======================== Course Queries ========================
   // Future<void> addCourse(CourseHiveModel course) async {
@@ -92,7 +94,7 @@ class HiveService {
   // Delete hive
   Future<void> deleteHive() async {
     await Hive.deleteBoxFromDisk(HiveTableConstant.studentBox);
-    // await Hive.deleteBoxFromDisk(HiveTableConstant.batchBox);
+    await Hive.deleteBoxFromDisk(HiveTableConstant.contactBox);
     // await Hive.deleteBoxFromDisk(HiveTableConstant.courseBox);
   }
 }

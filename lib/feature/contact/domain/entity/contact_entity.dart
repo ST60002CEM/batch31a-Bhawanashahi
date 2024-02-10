@@ -1,21 +1,21 @@
-// import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart';
 
-// class ContactEntity extends Equatable {
-//   final String? contactId;
-//   final String email;
-//   final String message;
+class ContactEntity extends Equatable {
+  final String? contactId;
+  final String contactName;
+  final String message;
 
-//   @override
-//   List<Object?> get props => [contactId, email, message];
+  @override
+  List<Object?> get props => [contactId, contactName, message];
 
-//   const ContactEntity({
-//     this.contactId,
-//     required this.email,
-//     required this.message
-//   });
+  const ContactEntity({
+    this.contactId,
+    required this.contactName,
+    required this.message
+  });
 
-//   @override
-//   String toString() {
-//     return 'ContactEntity(contactId: $contactId, email: $email, message: $message)';
-//   }
-// }
+  @override
+  String toString() {
+    return 'ContactEntity(contactId: $contactId, contactName: $contactName, message: $message)';
+  }
+}

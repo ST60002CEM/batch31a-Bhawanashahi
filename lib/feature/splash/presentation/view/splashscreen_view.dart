@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:online_pet_shop/feature/auth/presentation/view/login_view.dart';
 import 'package:online_pet_shop/feature/auth/presentation/view/register_view.dart';
-import 'package:online_pet_shop/feature/contact/presentation/view/add_contact_view.dart';
 import 'package:online_pet_shop/feature/home/presentation/view/homepage_view.dart';
 import 'package:online_pet_shop/feature/notification/presentation/view/notification_view.dart';
+
+import '../../../contact/presentation/view/add_contact_view.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context)=>LoginView(),
+              builder: (context)=>AddContactView(),
           ));
     });
 

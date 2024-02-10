@@ -23,8 +23,8 @@ class ApiEndpoints {
   // static const String uploadImage = "auth/uploadImage";
 
   // ====================== Batch Routes ======================
-  // static const String createBatch = "batch/createBatch";
-  // static const String getAllBatch = "batch/getAllBatches";
+  static const String createContact = "contact/createContact";
+  static const String getAllContact = "contact/getAllContacts";
 
   // // ====================== Course Routes ======================
   // static const String createCourse = "course/createCourse";
