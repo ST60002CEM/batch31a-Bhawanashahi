@@ -22,11 +22,11 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final _gap = const SizedBox(height: 8);
 
   final _key = GlobalKey<FormState>();
-  final _fnameController = TextEditingController(text: 'Zoro');
-  final _lnameController = TextEditingController(text: 'Roronoa');
-  final _phoneController = TextEditingController(text: '9812345678');
-  final _emailController = TextEditingController(text: 'zoro@gmail.com');
-  final _passwordController = TextEditingController(text: 'zoro123');
+  final _firstNameController = TextEditingController(text: 'Suman');
+  final _lastNameController = TextEditingController(text: 'Shah');
+  // final _phoneController = TextEditingController(text: '9812345678');
+  final _emailController = TextEditingController(text: 'suman@gmail.com');
+  final _passwordController = TextEditingController(text: 'suman12');
 
   bool isObscure = true;
 
@@ -73,7 +73,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   ),
                   const SizedBox(height: 25),
                   TextFormField(
-                    controller: _fnameController,
+                    controller: _firstNameController,
                     decoration: const InputDecoration(
                       labelText: 'First Name',
                     ),
@@ -86,7 +86,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   ),
                   _gap,
                   TextFormField(
-                    controller: _lnameController,
+                    controller: _lastNameController,
                     decoration: const InputDecoration(
                       labelText: 'Last Name',
                     ),
@@ -155,15 +155,15 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                       onPressed: () {
                         if (_key.currentState!.validate()) {
                           final entity = AuthEntity(
-                            fname: _fnameController.text.trim(),
-                            lname: _lnameController.text.trim(),
-                            phone: _phoneController.text.trim(),
-                            email:_ emailController.text.trim().toLowerCase(),
+                            firstName: _firstNameController.text.trim(),
+                            lastName: _lastNameController.text.trim(),
+                            // phone: _phoneController.text.trim(),
+                            email: _emailController.text.trim().toLowerCase(),
                             password: _passwordController.text,
                           );
                           ref
                               .read(authViewModelProvider.notifier)
-                              .registerStudent(entity);
+                              .createUser(entity);
                         }
                       },
                       style: ButtonStyle(

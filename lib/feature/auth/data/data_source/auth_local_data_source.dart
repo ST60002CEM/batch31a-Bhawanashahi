@@ -15,23 +15,23 @@ class AuthLocalDataSource {
 
   AuthLocalDataSource(this._hiveService);
 
-  Future<Either<Failure, bool>> registerStudent(AuthEntity entity) async {
+  Future<Either<Failure, bool>> createUser(AuthEntity entity) async {
     try {
       // Convert auth entity to auth hive model
       AuthHiveModel authHiveModel = AuthHiveModel.toHiveModel(entity);
       // Save auth hive model to hive
-      await _hiveService.registerStudent(authHiveModel);
+      await _hiveService.ccreateUser(authHiveModel);
       return const Right(true);
     } catch (e) {
       return Left(Failure(error: e.toString()));
     }
   }
 
-  Future<Either<Failure, bool>> loginStudent(
+  Future<Either<Failure, bool>> loginUser(
     String email,
     String password,
   ) async {
-    var isLogin = await _hiveService.loginStudent(email, password);
+    var isLogin = await _hiveService.loginUser(email, password);
     if (isLogin) {
       return const Right(true);
     } else {

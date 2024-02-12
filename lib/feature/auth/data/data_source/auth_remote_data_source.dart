@@ -23,7 +23,7 @@ class AuthRemoteDataSource {
 
   AuthRemoteDataSource(this.dio,this.userSharedPrefs);
 
-  Future<Either<Failure, bool>> loginStudent(
+  Future<Either<Failure, bool>> loginUser(
     String email,
     String password,
   ) async {
@@ -88,15 +88,14 @@ class AuthRemoteDataSource {
   //   }
   // }
 
-  Future<Either<Failure, bool>> registerStudent(AuthEntity student) async {
+  Future<Either<Failure, bool>> createUser(AuthEntity student) async {
     try {
       AuthApiModel apiModel = AuthApiModel.fromEntity(student);
       Response response = await dio.post(
-        ApiEndpoints.register,
+        ApiEndpoints.create,
         data: {
-          "fname": apiModel.fname,
-          "lname": apiModel.lname,
-          "phone": apiModel.phone,
+          "firstName": apiModel.firstName,
+          "lastName": apiModel.lastName,
           "email": apiModel.email,
           "password": apiModel.password,
         },

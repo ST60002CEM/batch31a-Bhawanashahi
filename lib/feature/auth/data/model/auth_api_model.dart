@@ -6,17 +6,17 @@ part 'auth_api_model.g.dart';
 @JsonSerializable()
 class AuthApiModel {
   @JsonKey(name: '_id')
-  final String? studentId;
-  final String fname;
-  final String lname;
+  final String? userId;
+  final String firstName;
+  final String lastName;
   // final String phone;
   final String email;
   final String? password;
 
   AuthApiModel({
-    this.studentId,
-    required this.fname,
-    required this.lname,
+    this.userId,
+    required this.firstName,
+    required this.lastName,
     // required this.phone,
     required this.email,
     this.password,
@@ -30,13 +30,13 @@ class AuthApiModel {
   // To entity
   factory AuthApiModel.toEntity(AuthApiModel apiModel) {
     return AuthApiModel(
-      studentId: apiModel.studentId,
-      fname: apiModel.fname,
-      lname: apiModel.lname,
+      userId: apiModel.userId,
+      firstName: apiModel.firstName,
+      lastName: apiModel.lastName,
 
       // phone: apiModel.phone,
 
-      username: apiModel.email,
+      email: apiModel.email,
       password: apiModel.password,
     );
   }
@@ -44,13 +44,13 @@ class AuthApiModel {
   // From entity
   factory AuthApiModel.fromEntity(AuthEntity entity) {
     return AuthApiModel(
-      studentId: entity.studentId,
-      fname: entity.fname,
-      lname: entity.lname,
+      userId: entity.userId,
+      firstName: entity.firstName,
+      lastName: entity.lastName,
       //
       // phone: entity.phone,
-  
-      username: entity.email,
+
+      email: entity.email,
       password: entity.password,
     );
   }

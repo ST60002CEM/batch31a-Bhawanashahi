@@ -14,7 +14,7 @@ class RegisterUseCase {
 
   RegisterUseCase(this._authRepository);
 
-  Future<Either<Failure, bool>> registerStudent(AuthEntity entity) async {
-    return await _authRepository.registerStudent(entity);
+  Future<Either<Failure, bool>> createUser(AuthEntity entity) async {
+    return await _authRepository.createUser(entity);
   }
 }

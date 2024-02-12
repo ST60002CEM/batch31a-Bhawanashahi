@@ -13,10 +13,10 @@ class LoginUseCase {
 
   LoginUseCase(this._authRepository);
 
-  Future<Either<Failure, bool>> loginStudent(
+  Future<Either<Failure, bool>> loginUser(
     String email,
     String password,
   ) async {
-    return await _authRepository.loginStudent(email, password);
+    return await _authRepository.loginUser(email, password);
   }
 }

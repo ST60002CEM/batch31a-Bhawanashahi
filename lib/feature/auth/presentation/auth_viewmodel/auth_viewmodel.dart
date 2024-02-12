@@ -44,9 +44,9 @@ class AuthViewModel extends StateNotifier<AuthState> {
   //   );
   // }
 
-  Future<void> registerStudent(AuthEntity entity) async {
+  Future<void> createUser(AuthEntity entity) async {
     state = state.copyWith(isLoading: true);
-    final result = await _registerUseCase.registerStudent(entity);
+    final result = await _registerUseCase.createUser(entity);
     state = state.copyWith(isLoading: false);
     result.fold(
       (failure) => state = state.copyWith(error: failure.error),
@@ -57,10 +57,10 @@ class AuthViewModel extends StateNotifier<AuthState> {
   }
 
   //Login
-  Future<void> loginStudent(
+  Future<void> loginUser(
       BuildContext context, String email, String password) async {
     state = state.copyWith(isLoading: true);
-    final result = await _loginUseCase.loginStudent(email, password);
+    final result = await _loginUseCase.loginUser(email, password);
     state = state.copyWith(isLoading: false);
     result.fold(
       (failure) => state = state.copyWith(

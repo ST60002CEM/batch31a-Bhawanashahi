@@ -7,41 +7,41 @@ import 'package:uuid/uuid.dart';
 
 part 'auth_hive_model.g.dart';
 
-@HiveType(typeId: HiveTableConstant.studentTableId)
+@HiveType(typeId: HiveTableConstant.userTableId)
 class AuthHiveModel extends Equatable {
   @HiveField(0)
-  final String studentId;
+  final String userId;
 
   @HiveField(1)
-  final String fname;
+  final String firstName;
 
   @HiveField(2)
-  final String lname;
+  final String lastName;
 
 
   @HiveField(3)
   final String email;
 
-  @HiveField(email)
+  @HiveField(4)
   final String password;
 
   // Constructor
   AuthHiveModel({
-    String? studentId,
-    required this.fname,
-    required this.lname,
+    String? userId,
+    required this.firstName,
+    required this.lastName,
     // required this.phone,
 
     required this.email,
     required this.password,
-  }) : studentId = studentId ?? const Uuid().v4();
+  }) : userId =userId ?? const Uuid().v4();
 
   // // empty constructor
   AuthHiveModel.empty()
       : this(
-          studentId: '',
-          fname: '',
-          lname: '',
+          userId: '',
+          firstName: '',
+          lastName: '',
           // phone: '',
           email: '',
           password: '',
@@ -49,8 +49,8 @@ class AuthHiveModel extends Equatable {
 
   // Convert Entity to Hive Object
   factory AuthHiveModel.toHiveModel(AuthEntity entity) => AuthHiveModel(
-        fname: entity.fname,
-        lname: entity.lname,
+        firstName: entity.firstName,
+        lastName: entity.lastName,
         // phone: entity.phone,
         email: entity.email,
         password: entity.password,
@@ -58,9 +58,9 @@ class AuthHiveModel extends Equatable {
 
   // Convert Hive Object to Entity
   static AuthEntity toEntity(AuthHiveModel hiveModel) => AuthEntity(
-        studentId: hiveModel.studentId,
-        fname: hiveModel.fname,
-        lname: hiveModel.lname,
+         userId: hiveModel.userId,
+        firstName: hiveModel.firstName,
+        lastName: hiveModel.lastName,
         // phone: hiveModel.phone,
         email: hiveModel.email,
         password: hiveModel.password,
@@ -68,15 +68,15 @@ class AuthHiveModel extends Equatable {
 
   @override
   String toString() {
-    return 'studentId: $studentId, fname: $fname, lname: $lname, email: $email, password: $password';
+    return 'userId: $userId, firstName: $firstName, lastName: $lastName, email: $email, password: $password';
   }
 
   @override
   List<Object?> get props => [
-        studentId,
-        fname,
-        lname,
-        phone,
+        userId,
+        firstName,
+        lastName,
+        // phone,
         email,
         password,
       ];
