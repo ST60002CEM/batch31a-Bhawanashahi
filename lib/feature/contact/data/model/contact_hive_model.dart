@@ -15,20 +15,25 @@ class ContactHiveModel {
   final String contactName;
 
   @HiveField(2)
+  final String email;
+
+  @HiveField(3)
   final String message;
 
   // empty constructor
-  ContactHiveModel.empty() : this(contactId: '', contactName: '', message:'');
+  ContactHiveModel.empty() : this(contactId: '', contactName: '', email: '', message:'');
 
   ContactHiveModel({
     String? contactId,
     required this.contactName,
+    required this.email,
     required this.message,
   }) : contactId = contactId ?? const Uuid().v4();
 
   // Convert Entity to Hive Object
   factory ContactHiveModel.toHiveModel(ContactEntity entity) => ContactHiveModel(
     contactName: entity.contactName,
+    email: entity.email,
     message:entity.message,
       );
 
@@ -36,6 +41,7 @@ class ContactHiveModel {
   static ContactEntity toEntity(ContactHiveModel hiveModel) => ContactEntity(
         contactId: hiveModel.contactId,
         contactName: hiveModel.contactName,
+    email: hiveModel.email,
     message:hiveModel.message,
       );
 

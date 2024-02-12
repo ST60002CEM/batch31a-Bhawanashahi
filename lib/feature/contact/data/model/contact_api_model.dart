@@ -10,16 +10,18 @@ class ContactAPIModel {
   final String? contactId;
   // J name server ma cha tei name ya lekhne
   final String contactName;
+  final String email;
 
   final String message;
 
-  ContactAPIModel({this.contactId, required this.contactName, required this.message});
+  ContactAPIModel({this.contactId, required this.contactName, required this.email, required this.message});
 
   // To Json and fromJson without freezed
   factory ContactAPIModel.fromJson(Map<String, dynamic> json) {
     return ContactAPIModel(
       contactId: json['_id'],
       contactName: json['contactName'],
+      email:json['email'],
       message: json['message'],
     );
   }
@@ -27,6 +29,7 @@ class ContactAPIModel {
   Map<String, dynamic> toJson() {
     return {
       'contactName': contactName,
+      'email': email,
       'message':message
 
     };
@@ -37,6 +40,7 @@ class ContactAPIModel {
     return ContactAPIModel(
       contactId: entity.contactId,
       contactName: entity.contactName,
+      email: entity.email,
       message: entity.message,
     );
   }
@@ -46,6 +50,7 @@ class ContactAPIModel {
     return ContactEntity(
       contactId: model.contactId,
       contactName: model.contactName,
+      email: model.email,
       message: model.message,
     );
   }

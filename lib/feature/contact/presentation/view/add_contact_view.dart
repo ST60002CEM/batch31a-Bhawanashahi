@@ -9,6 +9,7 @@ class AddContactView extends ConsumerWidget {
 
   final gap = const SizedBox(height: 8);
   final nameController = TextEditingController();
+  final emailController = TextEditingController();
   final messageController = TextEditingController();
 
   @override
@@ -65,6 +66,20 @@ class AddContactView extends ConsumerWidget {
                   ),
                   gap,
                   TextFormField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Contact Email',
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter email';
+                      }
+                      return null;
+                    },
+                  ),
+                  gap,
+                  TextFormField(
                     controller: messageController,
                     maxLines: 5, // Increase the number of lines
                     decoration: InputDecoration(
@@ -87,6 +102,7 @@ class AddContactView extends ConsumerWidget {
                       onPressed: () {
                         ContactEntity contact = ContactEntity(
                           contactName: nameController.text,
+                          email: emailController.text,
                           message: messageController.text,
                         );
                         ref.read(contactViewModelProvider.notifier).addContact(contact);

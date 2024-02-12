@@ -19,7 +19,8 @@ class ContactHiveModelAdapter extends TypeAdapter<ContactHiveModel> {
     return ContactHiveModel(
       contactId: fields[0] as String?,
       contactName: fields[1] as String,
-      message: fields[2] as String
+      email: fields[2] as String,
+      message: fields[3] as String
     );
   }
 
@@ -31,7 +32,9 @@ class ContactHiveModelAdapter extends TypeAdapter<ContactHiveModel> {
       ..write(obj.contactId)
       ..writeByte(1)
       ..write(obj.contactName)
-       ..writeByte(1)
+       ..writeByte(2)
+      ..write(obj.email)
+      ..writeByte(3)
       ..write(obj.message);
   }
 
