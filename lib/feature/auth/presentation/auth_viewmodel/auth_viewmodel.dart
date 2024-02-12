@@ -58,9 +58,9 @@ class AuthViewModel extends StateNotifier<AuthState> {
 
   //Login
   Future<void> loginStudent(
-      BuildContext context, String username, String password) async {
+      BuildContext context, String email, String password) async {
     state = state.copyWith(isLoading: true);
-    final result = await _loginUseCase.loginStudent(username, password);
+    final result = await _loginUseCase.loginStudent(email, password);
     state = state.copyWith(isLoading: false);
     result.fold(
       (failure) => state = state.copyWith(

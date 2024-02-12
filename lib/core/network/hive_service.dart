@@ -65,11 +65,11 @@ class HiveService {
   }
 
   // Login
-  Future<bool> loginStudent(String username, String password) async {
+  Future<bool> loginStudent(String email, String password) async {
     var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
     var auths = box.values.toList();
     var auth = auths.firstWhere(
-          (element) => element.username == username && element.password == password,
+          (element) => element.email ==email && element.password == password,
       orElse: () => AuthHiveModel.empty(),
     );
 

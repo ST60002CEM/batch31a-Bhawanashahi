@@ -25,7 +25,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final _fnameController = TextEditingController(text: 'Zoro');
   final _lnameController = TextEditingController(text: 'Roronoa');
   final _phoneController = TextEditingController(text: '9812345678');
-  final _usernameController = TextEditingController(text: 'zoro');
+  final _emailController = TextEditingController(text: 'zoro@gmail.com');
   final _passwordController = TextEditingController(text: 'zoro123');
 
   bool isObscure = true;
@@ -97,28 +97,28 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                       return null;
                     }),
                   ),
+                  // _gap,
+                  // TextFormField(
+                  //   controller: _phoneController,
+                  //   decoration: const InputDecoration(
+                  //     labelText: 'Phone No',
+                  //   ),
+                  //   validator: ((value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Please enter phoneNo';
+                  //     }
+                  //     return null;
+                  //   }),
+                  // ),
                   _gap,
                   TextFormField(
-                    controller: _phoneController,
+                    controller: _emailController,
                     decoration: const InputDecoration(
-                      labelText: 'Phone No',
+                      labelText: 'Email',
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter phoneNo';
-                      }
-                      return null;
-                    }),
-                  ),
-                  _gap,
-                  TextFormField(
-                    controller: _usernameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Username',
-                    ),
-                    validator: ((value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter username';
+                        return 'Please enter email';
                       }
                       return null;
                     }),
@@ -147,6 +147,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                       return null;
                     }),
                   ),
+
                   _gap,
                   SizedBox(
                     width: double.infinity,
@@ -157,8 +158,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                             fname: _fnameController.text.trim(),
                             lname: _lnameController.text.trim(),
                             phone: _phoneController.text.trim(),
-                            username:
-                            _usernameController.text.trim().toLowerCase(),
+                            email:_ emailController.text.trim().toLowerCase(),
                             password: _passwordController.text,
                           );
                           ref

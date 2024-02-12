@@ -14,7 +14,7 @@ class LoginView extends ConsumerStatefulWidget {
 
 class _LoginViewState extends ConsumerState<LoginView> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController(text: 'zoro');
+  final _emailController = TextEditingController(text: 'zoro@gmail.com');
   final _passwordController = TextEditingController(text: 'zoro123');
   bool isObscure = true;
 
@@ -47,15 +47,15 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       ),
                     ),
                     TextFormField(
-                      key: const ValueKey('username'),
+                      key: const ValueKey('email'),
                       controller: _usernameController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Username',
+                        labelText: 'Email',
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter username';
+                          return 'Please enter email';
                         }
                         return null;
                       },
@@ -111,7 +111,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                               .read(authViewModelProvider.notifier)
                               .loginStudent(
                             context,
-                            _usernameController.text,
+                            _emailController.text,
                             _passwordController.text,
                           );
                         }

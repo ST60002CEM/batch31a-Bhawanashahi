@@ -18,15 +18,11 @@ class AuthHiveModel extends Equatable {
   @HiveField(2)
   final String lname;
 
+
   @HiveField(3)
-  final String phone;
+  final String email;
 
-
-
-  @HiveField(6)
-  final String username;
-
-  @HiveField(7)
+  @HiveField(email)
   final String password;
 
   // Constructor
@@ -34,9 +30,9 @@ class AuthHiveModel extends Equatable {
     String? studentId,
     required this.fname,
     required this.lname,
-    required this.phone,
+    // required this.phone,
 
-    required this.username,
+    required this.email,
     required this.password,
   }) : studentId = studentId ?? const Uuid().v4();
 
@@ -46,8 +42,8 @@ class AuthHiveModel extends Equatable {
           studentId: '',
           fname: '',
           lname: '',
-          phone: '',
-          username: '',
+          // phone: '',
+          email: '',
           password: '',
         );
 
@@ -55,8 +51,8 @@ class AuthHiveModel extends Equatable {
   factory AuthHiveModel.toHiveModel(AuthEntity entity) => AuthHiveModel(
         fname: entity.fname,
         lname: entity.lname,
-        phone: entity.phone,
-        username: entity.username,
+        // phone: entity.phone,
+        email: entity.email,
         password: entity.password,
       );
 
@@ -65,14 +61,14 @@ class AuthHiveModel extends Equatable {
         studentId: hiveModel.studentId,
         fname: hiveModel.fname,
         lname: hiveModel.lname,
-        phone: hiveModel.phone,
-        username: hiveModel.username,
+        // phone: hiveModel.phone,
+        email: hiveModel.email,
         password: hiveModel.password,
       );
 
   @override
   String toString() {
-    return 'studentId: $studentId, fname: $fname, lname: $lname, phone: $phone, username: $username, password: $password';
+    return 'studentId: $studentId, fname: $fname, lname: $lname, email: $email, password: $password';
   }
 
   @override
@@ -81,7 +77,7 @@ class AuthHiveModel extends Equatable {
         fname,
         lname,
         phone,
-        username,
+        email,
         password,
       ];
 }

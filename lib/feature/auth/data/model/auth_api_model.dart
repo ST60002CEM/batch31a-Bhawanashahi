@@ -9,16 +9,16 @@ class AuthApiModel {
   final String? studentId;
   final String fname;
   final String lname;
-  final String phone;
-  final String username;
+  // final String phone;
+  final String email;
   final String? password;
 
   AuthApiModel({
     this.studentId,
     required this.fname,
     required this.lname,
-    required this.phone,
-    required this.username,
+    // required this.phone,
+    required this.email,
     this.password,
   });
 
@@ -34,9 +34,9 @@ class AuthApiModel {
       fname: apiModel.fname,
       lname: apiModel.lname,
 
-      phone: apiModel.phone,
+      // phone: apiModel.phone,
 
-      username: apiModel.username,
+      username: apiModel.email,
       password: apiModel.password,
     );
   }
@@ -47,10 +47,10 @@ class AuthApiModel {
       studentId: entity.studentId,
       fname: entity.fname,
       lname: entity.lname,
-
-      phone: entity.phone,
+      //
+      // phone: entity.phone,
   
-      username: entity.username,
+      username: entity.email,
       password: entity.password,
     );
   }

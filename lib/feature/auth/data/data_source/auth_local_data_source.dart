@@ -28,14 +28,14 @@ class AuthLocalDataSource {
   }
 
   Future<Either<Failure, bool>> loginStudent(
-    String username,
+    String email,
     String password,
   ) async {
-    var isLogin = await _hiveService.loginStudent(username, password);
+    var isLogin = await _hiveService.loginStudent(email, password);
     if (isLogin) {
       return const Right(true);
     } else {
-      return Left(Failure(error: "Invalid username or password"));
+      return Left(Failure(error: "Invalid email or password"));
     }
   }
 }
