@@ -15,6 +15,7 @@ class ApiEndpoints {
   static const String login = "user/login";
   static const String create = "user/create";
   static const String getAllStudent = "auth/getAllStudents";
+  static const String getAllProduct = "product/getAllProductApi";
   // static const String getStudentsByBatch = "auth/getStudentsByBatch/";
   // static const String getStudentsByCourse = "auth/getStudentsByCourse/";
   static const String updateStudent = "user/updateStudent/";
@@ -23,8 +24,8 @@ class ApiEndpoints {
   // static const String uploadImage = "auth/uploadImage";
 
   // ====================== Batch Routes ======================
-  static const String createContact = "contact/createContact";
-  static const String getAllContact = "contact/getAllContacts";
+  static const String sendMessage = "contact/create_contact";
+  static const String getAllContact = "contact/get_contact";
 
   // // ====================== Course Routes ======================
   // static const String createCourse = "course/createCourse";

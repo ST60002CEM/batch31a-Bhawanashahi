@@ -5,6 +5,7 @@ import 'package:online_pet_shop/feature/auth/data/model/auth_hive_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../feature/contact/data/model/contact_hive_model.dart';
+import '../../feature/home/data/model/home_hive_model.dart';
 
 
 // Create object using a provider
@@ -19,26 +20,26 @@ class HiveService {
 
     // Register Adapters
     Hive.registerAdapter(AuthHiveModelAdapter());
-    // Hive.registerAdapter(BatchHiveModelAdapter());
-    // Hive.registerAdapter(CourseHiveModelAdapter());
+    Hive.registerAdapter(ContactHiveModelAdapter());
+    // Hive.registerAdapter(HomeHiveModelAdapter());
   }
 
   // // ======================== Batch Queries ========================
-  // Future<void> addBatch(ContactHiveModel contact) async {
-  //   var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
-  //   await box.put(contact.contactId, contact);
-  // }
-  //
-  // Future<List<ContactHiveModel>> getAllContacts() async {
-  //   var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
-  //   var contacts = box.values.toList();
-  //   return contacts;
-  // }
-  //
-  // Future<void> deleteContact(String contactId) async {
-  //   var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
-  //   await box.delete(contactId);
-  // }
+  Future<void> addBatch(ContactHiveModel contact) async {
+    var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
+    await box.put(contact.contactId, contact);
+  }
+
+  Future<List<ContactHiveModel>> getAllContacts() async {
+    var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
+    var contacts = box.values.toList();
+    return contacts;
+  }
+
+  Future<void> deleteContact(String contactId) async {
+    var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
+    await box.delete(contactId);
+  }
 
   // // ======================== Course Queries ========================
   // Future<void> addCourse(CourseHiveModel course) async {
@@ -94,7 +95,12 @@ class HiveService {
   // Delete hive
   Future<void> deleteHive() async {
     await Hive.deleteBoxFromDisk(HiveTableConstant.userBox);
-    // await Hive.deleteBoxFromDisk(HiveTableConstant.contactBox);
+    await Hive.deleteBoxFromDisk(HiveTableConstant.contactBox);
     // await Hive.deleteBoxFromDisk(HiveTableConstant.courseBox);
+  }
+  Future<List<HomeHiveModel>> getAllProductApi() async {
+    var box = await Hive.openBox<HomeHiveModel>(HiveTableConstant.homeBox);
+    var batches = box.values.toList();
+    return batches;
   }
 }

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:online_pet_shop/feature/auth/presentation/view/login_view.dart';
 import 'package:online_pet_shop/feature/auth/presentation/view/register_view.dart';
 import 'package:online_pet_shop/feature/home/presentation/view/homepage_view.dart';
+import 'package:online_pet_shop/feature/cart/presentation/view/cart_view.dart';
 import 'package:online_pet_shop/feature/notification/presentation/view/notification_view.dart';
+import 'package:online_pet_shop/feature/profile/presentation/view/profile_view.dart';
 
 import '../../../contact/presentation/view/add_contact_view.dart';
 
