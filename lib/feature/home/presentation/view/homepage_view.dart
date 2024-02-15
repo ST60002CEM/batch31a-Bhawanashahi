@@ -6,6 +6,7 @@ import '../../../../config/router/app_route.dart';
 class Homepage extends StatelessWidget {
   const Homepage({Key? key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,6 +120,7 @@ class Homepage extends StatelessWidget {
               ],
             ),
           ),
+
           SizedBox(width: 10,),
           Padding(
             padding: const EdgeInsets.only(top: 20.0, left: 18, right: 18),
@@ -170,6 +172,7 @@ class Homepage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
                 onPressed: () => {},
                 child: Text(
+
                   "ADD TO CART",
                   style: TextStyle(
                     fontSize: 10.0,
@@ -177,6 +180,7 @@ class Homepage extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+
               ),
 
             ),
@@ -187,6 +191,7 @@ class Homepage extends StatelessWidget {
 
         ],
       ),
+
     );
   }
 }
