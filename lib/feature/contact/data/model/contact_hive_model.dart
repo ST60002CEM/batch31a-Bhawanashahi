@@ -47,6 +47,6 @@ class ContactHiveModel {
 
   @override
   String toString() {
-    return 'contactId: $contactId, contactName: $contactName, contactEmail:$contactEmail, contactMessage:$contactMessage';
+    return 'contactId: $contactId, contactName: $contactName, contactEmail:$contactEmail,get_all_batch_dto.g.dart contactMessage:$contactMessage';
   }
 }

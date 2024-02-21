@@ -20,7 +20,7 @@ class HiveService {
 
     // Register Adapters
     Hive.registerAdapter(AuthHiveModelAdapter());
-    Hive.registerAdapter(ContactHiveModelAdapter());
+    // Hive.registerAdapter(ContactHiveModelAdapter());
     // Hive.registerAdapter(HomeHiveModelAdapter());
   }
 
