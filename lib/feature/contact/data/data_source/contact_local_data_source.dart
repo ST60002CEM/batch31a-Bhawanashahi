@@ -24,7 +24,7 @@ class ContactLocalDataSource {
     try {
       // Convert BatchEntity to BatchHiveModel
       ContactHiveModel contactHiveModel = ContactHiveModel.toHiveModel(contact);
-      hiveService.addBatch(contactHiveModel);
+      hiveService.addContact(contactHiveModel);
       return const Right(true);
     } catch (e) {
       return Left(Failure(error: e.toString()));

@@ -25,7 +25,7 @@ class HiveService {
   }
 
   // // ======================== Batch Queries ========================
-  Future<void> addBatch(ContactHiveModel contact) async {
+  Future<void> addContact(ContactHiveModel contact) async {
     var box = await Hive.openBox<ContactHiveModel>(HiveTableConstant.contactBox);
     await box.put(contact.contactId, contact);
   }

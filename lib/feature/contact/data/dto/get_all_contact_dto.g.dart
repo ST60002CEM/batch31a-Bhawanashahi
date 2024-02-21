@@ -6,7 +6,7 @@ part of 'get_all_contact_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAllContactDTO _$GetAllBatchDTOFromJson(Map<String, dynamic> json) =>
+GetAllContactDTO _$GetAllContactDTOFromJson(Map<String, dynamic> json) =>
     GetAllContactDTO(
       success: json['success'] as bool,
       count: json['count'] as int,
@@ -15,7 +15,7 @@ GetAllContactDTO _$GetAllBatchDTOFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$GetAllBatchDTOToJson(GetAllContactDTO instance) =>
+Map<String, dynamic> _$GetAllContactDTOToJson(GetAllContactDTO instance) =>
     <String, dynamic>{
       'success': instance.success,
       'count': instance.count,
