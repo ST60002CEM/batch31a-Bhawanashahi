@@ -6,7 +6,7 @@ import '../state/home_state.dart';
 final homeViewModelProvider =
     StateNotifierProvider.autoDispose<HomeViewModel, HomeState>(
   (ref) => HomeViewModel(
-    getAllProductUsecase: ref.read(getAllProductApiUsecaseProvider ),
+    getAllProductUsecase: ref.read(getAllProductsUsecaseProvider ),
   ),
 );
 
@@ -20,9 +20,9 @@ class HomeViewModel extends StateNotifier<HomeState> {
   }
 
 
-  void getAllProductApi() {
+  void getAllProducts() {
     state = state.copyWith(isLoading: true);
-    getAllProductUsecase. getAllProductApi().then((value) {
+    getAllProductUsecase. getAllProducts().then((value) {
       value.fold(
         (failure) => state = state.copyWith(isLoading: false),
         (products) {

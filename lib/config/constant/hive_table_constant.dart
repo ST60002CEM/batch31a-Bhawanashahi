@@ -8,6 +8,7 @@ class HiveTableConstant {
 
   static const int contactTableId = 1;
   static const String contactBox = 'contactBox';
+
   static const int homeTableId = 2;
   static const String homeBox = 'homeBox';
 }

@@ -23,7 +23,7 @@ class HomeRemoteDatSource {
 
 
   // Get all batches
-  Future<Either<Failure, List<HomeEntity>>>  getAllProductApi() async {
+  Future<Either<Failure, List<HomeEntity>>>  getAllProducts() async {
     try {
       var response = await dio.get(ApiEndpoints.getAllProduct);
       if (response.statusCode == 200) {

@@ -14,7 +14,7 @@ class GetAllHomeUsecase {
 
   GetAllHomeUsecase({required this.repository});
 
-  Future<Either<Failure, List<HomeEntity>>> getAllProductApi() async {
-    return await repository.getAllProductApi();
+  Future<Either<Failure, List<HomeEntity>>> getAllProducts() async {
+    return await repository.getAllProducts();
   }
 }

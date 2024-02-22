@@ -18,6 +18,6 @@ final homeRepositoryProvider = Provider.autoDispose<IHomeRepository>(
 );
 
 abstract class IHomeRepository {
-  Future<Either<Failure, List<HomeEntity>>>  getAllProductApi();
+  Future<Either<Failure, List<HomeEntity>>>  getAllProducts();
 
 }

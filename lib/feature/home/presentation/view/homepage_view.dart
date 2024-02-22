@@ -1,11 +1,24 @@
+
 import 'package:flutter/material.dart';
 import 'package:online_pet_shop/feature/cart/presentation/view/cart_view.dart';
 
 import '../../../../config/router/app_route.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({Key? key});
 
+  @override
+  _HomepageState createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  int _selectedIndex = 0; // Define _selectedIndex here
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,32 +29,10 @@ class Homepage extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              children: [
-                Icon(Icons.home_filled),
-                Text("Home"),
-              ],
-            ),
-            Column(
-              children: [
-                Icon(Icons.category_rounded),
-                Text("Category"),
-              ],
-            ),
-            Column(
-              children: [
-
-                Icon(Icons.add_shopping_cart),
-                Text("Cart"),
-
-      ],
-            ),
-            Column(
-              children: [
-                Icon(Icons.notification_add_rounded),
-                Text("Notifications"),
-              ],
-            ),
+            buildNavBarItem(Icons.home_filled, "Home", 0),
+            buildNavBarItem(Icons.category_rounded, "Category", 1),
+            buildNavBarItem(Icons.add_shopping_cart, "Cart", 2),
+            buildNavBarItem(Icons.notification_add_rounded, "Notifications", 3),
           ],
         ),
       ),
@@ -191,7 +182,25 @@ class Homepage extends StatelessWidget {
 
         ],
       ),
+    );
+  }
 
+  Widget buildNavBarItem(IconData icon, String label, int index) {
+    return InkWell(
+      onTap: () {
+        _onItemTapped(index);
+      },
+      child: Column(
+        children: [
+          Icon(icon, color: _selectedIndex == index ? Color(0xffD8812F) : Colors.black),
+          Text(
+            label,
+            style: TextStyle(color: _selectedIndex == index ? Color(0xffD8812F) : Colors.black),
+          ),
+        ],
+      ),
     );
   }
 }
+
+    

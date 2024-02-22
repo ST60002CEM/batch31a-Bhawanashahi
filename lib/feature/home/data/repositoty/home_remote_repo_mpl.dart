@@ -18,8 +18,8 @@ class HomeRemoteRepoImpl implements IHomeRepository {
   const HomeRemoteRepoImpl({required this.homeRemoteDatSource});
 
   @override
-  Future<Either<Failure, List<HomeEntity>>> getAllProductApi() {
-    return homeRemoteDatSource.getAllProductApi();
+  Future<Either<Failure, List<HomeEntity>>> getAllProducts() {
+    return homeRemoteDatSource.getAllProducts();
   }
 
   // @override
