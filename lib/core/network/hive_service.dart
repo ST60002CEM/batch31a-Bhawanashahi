@@ -101,6 +101,6 @@ class HiveService {
   Future<List<HomeHiveModel>> getAllProductApi() async {
     var box = await Hive.openBox<HomeHiveModel>(HiveTableConstant.homeBox);
     var batches = box.values.toList();
-    return batches;
+    return contacts;
   }
 }
