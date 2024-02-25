@@ -6,16 +6,16 @@ part of 'get_all_product_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAllHomeDTO _$GetAllHomeDTOFromJson(Map<String, dynamic> json) =>
-    GetAllHomeDTO(
+GetAllProductDTO _$GetAllHomeDTOFromJson(Map<String, dynamic> json) =>
+    GetAllProductDTO(
       success: json['success'] as bool,
       count: json['count'] as int,
       data: (json['data'] as List<dynamic>)
-          .map((e) => HomeAPIModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ProductAPIModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$GetAllHomeDTOToJson(GetAllHomeDTO instance) =>
+Map<String, dynamic> _$GetAllProductDTOToJson(GetAllProductDTO instance) =>
     <String, dynamic>{
       'success': instance.success,
       'count': instance.count,

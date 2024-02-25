@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_pet_shop/config/constant/hive_table_constant.dart';
 import 'package:online_pet_shop/feature/auth/data/model/auth_hive_model.dart';
+import 'package:online_pet_shop/feature/product/data/model/product_hive_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../feature/contact/data/model/contact_hive_model.dart';
@@ -21,8 +22,8 @@ class HiveService {
     // Register Adapters
     Hive.registerAdapter(AuthHiveModelAdapter());
     // Hive.registerAdapter(ContactHiveModelAdapter());
-    // Hive.registerAdapter(HomeHiveModelAdapter());
-  }
+  //   Hive.productAdapter(ProductHiveModelAdapter());
+  // }
 
   // // ======================== Batch Queries ========================
   Future<void> addContact(ContactHiveModel contact) async {
@@ -98,9 +99,16 @@ class HiveService {
     await Hive.deleteBoxFromDisk(HiveTableConstant.contactBox);
     // await Hive.deleteBoxFromDisk(HiveTableConstant.courseBox);
   }
-  Future<List<HomeHiveModel>> getAllProducts() async {
-    var box = await Hive.openBox<HomeHiveModel>(HiveTableConstant.homeBox);
+//  Future<List<HomeHiveModel>> getAllProducts() async {
+//     var box = await Hive.openBox<HomeHiveModel>(HiveTableConstant.homeBox);
+//     var products = box.values.toList();
+//     return products;
+//   }
+  Future<List<ProductHiveModel>> getAllProducts() async {
+    var box = await Hive.openBox<ProductHiveModel>(HiveTableConstant.productBox);
     var products = box.values.toList();
     return products;
   }
+  }
 }
+

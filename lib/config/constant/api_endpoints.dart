@@ -15,7 +15,7 @@ class ApiEndpoints {
   static const String login = "user/login";
   static const String create = "user/create";
   static const String getAllStudent = "auth/getAllStudents";
-  static const String getAllProduct = "product/getAllProducts";
+  static const String getAllProduct = "product/get_products";
   // static const String getStudentsByCourse = "auth/getStudentsByCourse/";
   static const String updateStudent = "user/updateStudent/";
   static const String deleteStudent = "user/deleteStudent/";

@@ -20,7 +20,7 @@ class AuthLocalDataSource {
       // Convert auth entity to auth hive model
       AuthHiveModel authHiveModel = AuthHiveModel.toHiveModel(entity);
       // Save auth hive model to hive
-      await _hiveService.ccreateUser(authHiveModel);
+      await _hiveService.createUser(authHiveModel);
       return const Right(true);
     } catch (e) {
       return Left(Failure(error: e.toString()));

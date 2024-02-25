@@ -22,15 +22,15 @@ class HomeLocalDataSource {
   // Add Batch
 
 
-  Future<Either<Failure, List<HomeEntity>>>getAllProducts () async {
-    try {
-      List<HomeHiveModel> products = await hiveService.getAllProducts();
-      // Convert Hive Object to Entity
-      List<HomeEntity> homeEntities =
-      products.map((e) => HomeHiveModel.toEntity(e)).toList();
-      return Right(homeEntities);
-    } catch (e) {
-      return Left(Failure(error: e.toString()));
-    }
-  }
+  // Future<Either<Failure, List<HomeEntity>>>getAllProducts() async {
+  //   try {
+  //     List<HomeHiveModel> products = await hiveService.getAllProducts();
+  //     // Convert Hive Object to Entity
+  //     List<HomeEntity> homeEntities =
+  //     products.map((e) => HomeHiveModel.toEntity(e)).toList();
+  //     return Right(homeEntities);
+  //   } catch (e) {
+  //     return Left(Failure(error: e.toString()));
+  //   }
+  // }
 }
