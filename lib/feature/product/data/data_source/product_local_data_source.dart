@@ -24,7 +24,7 @@ class ProductLocalDataSource {
 
   Future<Either<Failure, List<ProductEntity>>>getAllProducts() async {
     try {
-      List<ProductHiveModel> products = await hiveService.getAllProduct();
+      List<ProductHiveModel> products = await hiveService.getAllProducts();
       // Convert Hive Object to Entity
       List<ProductEntity> productEntities =
       products.map((e) => ProductHiveModel.toEntity(e)).toList();

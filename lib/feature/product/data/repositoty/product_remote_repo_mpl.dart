@@ -14,7 +14,7 @@ final productRemoteRepositoryProvider = Provider.autoDispose<IProductRepository>
 );
 
 class ProductRemoteRepoImpl implements IProductRepository {
-  final ProductRemoteDatSource productRemoteDatSource;
+  final ProductRemoteDataSource productRemoteDatSource;
 
   const ProductRemoteRepoImpl({required this.productRemoteDatSource});
 

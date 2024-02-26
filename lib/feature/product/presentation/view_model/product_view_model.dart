@@ -16,13 +16,13 @@ class ProductViewModel extends StateNotifier<ProductState> {
   ProductViewModel({
     required this.getAllProductUsecase,
   }) : super(ProductState.initialState()) {
-    getAllProducts();
+    getAllProduct();
   }
 
 
-  void getAllProducts() {
+  void getAllProduct() {
     state = state.copyWith(isLoading: true);
-    getAllProductUsecase. getAllProducts().then((value) {
+    getAllProductUsecase. getAllProduct().then((value) {
       value.fold(
         (failure) => state = state.copyWith(isLoading: false),
         (products) {

@@ -99,11 +99,7 @@ class HiveService {
     await Hive.deleteBoxFromDisk(HiveTableConstant.contactBox);
     // await Hive.deleteBoxFromDisk(HiveTableConstant.courseBox);
   }
-//  Future<List<HomeHiveModel>> getAllProducts() async {
-//     var box = await Hive.openBox<HomeHiveModel>(HiveTableConstant.homeBox);
-//     var products = box.values.toList();
-//     return products;
-//   }
+
   Future<List<ProductHiveModel>> getAllProducts() async {
     var box = await Hive.openBox<ProductHiveModel>(HiveTableConstant.productBox);
     var products = box.values.toList();

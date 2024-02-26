@@ -23,27 +23,27 @@ class HomeRemoteDatSource {
 
 
   // Get all batches
-  Future<Either<Failure, List<HomeEntity>>>  getAllProducts() async {
-    try {
-      var response = await dio.get(ApiEndpoints.getAllProduct);
-      if (response.statusCode == 200) {
-        GetAllHomeDTO getAllHomeDTO = GetAllHomeDTO.fromJson(response.data);
-        // Convert BatchAPIModel to BatchEntity
-        List<HomeEntity> homeList = getAllHomeDTO.data
-            .map((product) => HomeAPIModel.toEntity(product))
-            .toList();
-
-        return Right(homeList);
-      } else {
-        return Left(
-          Failure(
-            error: response.statusMessage.toString(),
-            statusCode: response.statusCode.toString(),
-          ),
-        );
-      }
-    } on DioException catch (e) {
-      return Left(Failure(error: e.response?.data['message']));
-    }
-  }
+  // Future<Either<Failure, List<HomeEntity>>>  getAllProducts() async {
+  //   try {
+  //     var response = await dio.get(ApiEndpoints.getAllProduct);
+  //     if (response.statusCode == 200) {
+  //       GetAllHomeDTO getAllHomeDTO = GetAllHomeDTO.fromJson(response.data);
+  //       // Convert BatchAPIModel to BatchEntity
+  //       List<HomeEntity> homeList = getAllHomeDTO.data
+  //           .map((product) => HomeAPIModel.toEntity(product))
+  //           .toList();
+  //
+  //       return Right(homeList);
+  //     } else {
+  //       return Left(
+  //         Failure(
+  //           error: response.statusMessage.toString(),
+  //           statusCode: response.statusCode.toString(),
+  //         ),
+  //       );
+  //     }
+  //   } on DioException catch (e) {
+  //     return Left(Failure(error: e.response?.data['message']));
+  //   }
+  // }
 }

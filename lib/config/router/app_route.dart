@@ -17,7 +17,7 @@ class AppRoute {
   static const String googleMapRoute = '/googleMap';
   static const String CartRoute = '/cart';
   static const String contactRoute = '/contact';
-  // static const String profileRoute = '/profile';
+  static const String productRoute = '/product';
 
   static getApplicationRoute() {
     return {
@@ -26,7 +26,7 @@ class AppRoute {
       homeRoute: (context) => Homepage(),
       registerRoute: (context) => const RegisterView(),
       contactRoute: (context) =>  AddContactView(),
-      // profileRoute: (context) =>  ProfileView(),
+      // productRoute: (context) =>  ProductView(),
       // CartRoute: (context) => CartView(),
       // batchStudentRoute: (context) => const BatchStudentView(null),
       // googleMapRoute: (context) => const GoogleMapView(),
