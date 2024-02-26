@@ -179,13 +179,8 @@ class ProductView extends ConsumerStatefulWidget {
 }
 
 class _ProductState extends ConsumerState<ProductView> {
-  // late bool isDark;
-
-  // @override
-  // void initState() {
-  //   isDark = ref.read(isDarkThemeProvider);
-  //   super.initState();
-  // }
+  // Define a Set to store the indices of products added to the wishlist
+  Set<int> wishlistIndices = Set<int>();
 
   @override
   Widget build(BuildContext context) {
@@ -205,18 +200,20 @@ class _ProductState extends ConsumerState<ProductView> {
         itemCount: products?.length ?? 0,
         itemBuilder: (context, index) {
           ProductEntity? product = products?[index];
+          // Check if this product is in the wishlist
+          bool isInWishlist = wishlistIndices.contains(index);
           return GestureDetector(
             onTap: () {
               List<ProductEntity?>? products = productState.products;
               final args =
-                  ModalRoute.of(context)!.settings.arguments as List<String?>;
-              final productId= args[0] ?? 'productId';
+              ModalRoute.of(context)!.settings.arguments as List<String?>;
+              final productId = args[0] ?? 'productId';
               final productName = args[1] ?? 'productName';
               final productPrice = args[2] ?? 'productPrice';
               // final plantDescription = args[3] ?? 'plantDescription';
               final productCategory = args[3] ?? 'productCategory';
               final productImageURL = args[4];
-                'productImage';
+              'productImage';
             },
             child: Card(
               elevation: 3.0,
@@ -225,26 +222,26 @@ class _ProductState extends ConsumerState<ProductView> {
                 side: const BorderSide(color: Colors.black, width: 1.0),
               ),
               child: ListTile(
-                contentPadding: const EdgeInsets.all(8.0), // Adjust padding as needed
+                contentPadding: const EdgeInsets.all(8.0),
                 leading: Container(
                   width: 120,
                   height: 230,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust borderRadius as needed
+                    borderRadius: BorderRadius.circular(10.0),
                     color: const Color.fromRGBO(180, 200, 157, 1),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust borderRadius as needed
+                    borderRadius: BorderRadius.circular(10.0),
                     child: Image.network(
-                      product?.productImageUrl ?? '', // Replace with actual image URL
+                      product?.productImageUrl ?? '',
                       width: 100,
-                      height: 300,
+                      height: 400,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 title: Text(
-                  product?.productName ?? '', // Replace with actual product name
+                  product?.productName ?? '',
                   style: const TextStyle(
                     color: Color(0xffD8812F),
                     fontWeight: FontWeight.bold,
@@ -255,12 +252,12 @@ class _ProductState extends ConsumerState<ProductView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(8.0), // Adjust padding as needed
+                      padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0), // Adjust borderRadius as needed
+                        borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Text(
-                        'Category: ${product?.productCategory ?? ''}', // Replace with actual category
+                        'Category: ${product?.productCategory ?? ''}',
                         style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -272,8 +269,47 @@ class _ProductState extends ConsumerState<ProductView> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                    )
-
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: TextButton(
+                            onPressed: () {
+                              // Add to cart functionality
+                            },
+                            child: Text(
+                              'Add to Cart',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            style: TextButton.styleFrom(
+                              backgroundColor: Color(0xffD8812F),
+                              primary: Colors.black,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            isInWishlist
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: isInWishlist ? Color(0xffD8812F) : null,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (isInWishlist) {
+                                wishlistIndices.remove(index);
+                              } else {
+                                wishlistIndices.add(index);
+                              }
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -284,3 +320,4 @@ class _ProductState extends ConsumerState<ProductView> {
     );
   }
 }
+
