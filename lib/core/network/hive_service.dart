@@ -2,11 +2,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_pet_shop/config/constant/hive_table_constant.dart';
 import 'package:online_pet_shop/feature/auth/data/model/auth_hive_model.dart';
-import 'package:online_pet_shop/feature/product/data/model/product_hive_model.dart';
+import 'package:online_pet_shop/feature/dashboard/data/model/product_hive_model.dart';
+
 import 'package:path_provider/path_provider.dart';
 
 import '../../feature/contact/data/model/contact_hive_model.dart';
-import '../../feature/home/data/model/home_hive_model.dart';
+
 
 
 // Create object using a provider

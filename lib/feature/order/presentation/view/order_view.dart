@@ -2,13 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:online_pet_shop/feature/cart/presentation/view/cart_view.dart';
-import 'package:online_pet_shop/feature/product/domain/entity/product.entity.dart';
-import 'package:online_pet_shop/feature/product/presentation/view/product_view.dart';
 
 import '../../../../config/router/app_route.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({Key? key});
+class Order extends StatelessWidget {
+  const Order({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class Homepage extends StatelessWidget {
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       buildNavBarItem(Icons.home_filled, "Home", 0, context),
-      buildNavBarItem(Icons.category_rounded, "Products", 1, context),
+      buildNavBarItem(Icons.category_rounded, "Order", 1, context),
       buildNavBarItem(Icons.add_shopping_cart, "Cart", 2, context),
       buildNavBarItem(Icons.notification_add_rounded, "Notifications", 3, context),
     ],
@@ -180,11 +178,11 @@ class Homepage extends StatelessWidget {
         switch (index) {
           case 0:
           // Navigate to Home screen
-            Navigator.pushNamed(context, AppRoute.homeRoute);
+            Navigator.pushNamed(context, AppRoute.dashRoute);
             break;
           case 1:
           // Navigate to Products screen
-            Navigator.pushNamed(context, AppRoute.productRoute);
+            Navigator.pushNamed(context, AppRoute.orderRoute);
             break;
           case 2:
           // Navigate to Cart screen

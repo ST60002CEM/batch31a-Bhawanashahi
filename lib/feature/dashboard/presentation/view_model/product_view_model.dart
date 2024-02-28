@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:online_pet_shop/feature/product/domain/entity/product.entity.dart';
-import 'package:online_pet_shop/feature/product/domain/usecase/add_cart_usecase.dart';
+import 'package:online_pet_shop/feature/dashboard/domain/entity/product.entity.dart';
+import 'package:online_pet_shop/feature/dashboard/domain/usecase/add_cart_usecase.dart';
 
 import '../../domain/usecase/get_all_product_usecase.dart';
 import '../state/product_state.dart';

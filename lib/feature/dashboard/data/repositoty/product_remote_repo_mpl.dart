@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:online_pet_shop/feature/product/domain/entity/product.entity.dart';
-import 'package:online_pet_shop/feature/product/domain/repository/productRepository.dart';
+import 'package:online_pet_shop/feature/dashboard/domain/entity/product.entity.dart';
+import 'package:online_pet_shop/feature/dashboard/domain/repository/productRepository.dart';
 
 import '../../../../core/failure/failure.dart';
 

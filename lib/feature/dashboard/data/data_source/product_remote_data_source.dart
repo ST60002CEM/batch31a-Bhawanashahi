@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:online_pet_shop/config/constant/api_endpoints.dart';
 import 'package:online_pet_shop/core/failure/failure.dart';
 import 'package:online_pet_shop/core/network/http_service.dart';
-import 'package:online_pet_shop/feature/product/data/model/product_api_model.dart';
-import 'package:online_pet_shop/feature/product/domain/entity/product.entity.dart';
+import 'package:online_pet_shop/feature/dashboard/data/model/product_api_model.dart';
+import 'package:online_pet_shop/feature/dashboard/domain/entity/product.entity.dart';
 
 final productRemoteDatasourceProvider = Provider.autoDispose<ProductRemoteDataSource>(
       (ref) => ProductRemoteDataSource(
