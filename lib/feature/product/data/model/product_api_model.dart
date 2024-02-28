@@ -6,6 +6,7 @@ import 'package:online_pet_shop/feature/product/domain/entity/product.entity.dar
 @JsonSerializable()
 class ProductAPIModel {
   @JsonKey(name: '_id')
+
   // Server ko name lai batchId sanga map gareko
   final String? productId;
   // J name server ma cha tei name ya lekhne
@@ -14,6 +15,8 @@ class ProductAPIModel {
   final int productPrice;
   final String productCategory;
   final String  productImageUrl;
+  
+
 
   ProductAPIModel({this.productId, required this.productName, required this.productPrice, required this.productCategory, required this.productImageUrl});
 
@@ -24,7 +27,7 @@ class ProductAPIModel {
       productName: json['productName'],
       productPrice: json['productPrice'],
       productCategory: json['productCategory'],
-      productImageUrl: json['productImageUrl']
+      productImageUrl: json['productImageUrl'],
     );
   }
 
@@ -33,7 +36,7 @@ class ProductAPIModel {
       'productName': productName,
       'productPrice': productPrice,
       'productCategory': productCategory,
-      'productImageUrl':productImageUrl
+      'productImageUrl':productImageUrl,
     };
   }
 
@@ -56,6 +59,7 @@ class ProductAPIModel {
       productPrice: model.productPrice,
       productCategory: model.productCategory,
       productImageUrl: model.productImageUrl,
+
     );
   }
 }

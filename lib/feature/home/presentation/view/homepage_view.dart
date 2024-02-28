@@ -1,5 +1,8 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:online_pet_shop/feature/cart/presentation/view/cart_view.dart';
+import 'package:online_pet_shop/feature/product/domain/entity/product.entity.dart';
 import 'package:online_pet_shop/feature/product/presentation/view/product_view.dart';
 
 import '../../../../config/router/app_route.dart';
@@ -10,36 +13,20 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        height: 80,
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildNavBarItem(Icons.home_filled, "Home", () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Homepage()),
-              );
-            }),
-            _buildNavBarItem(Icons.category_rounded, "Products", () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProductView()),
-              );
-            }),
-            _buildNavBarItem(Icons.add_shopping_cart, "Cart", () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => CartView()),
-              // );
-            }),
-            _buildNavBarItem(Icons.notification_add_rounded, "Notifications", () {
-              // Navigate to Notifications screen
-            }),
-          ],
-        ),
-      ),
+     bottomNavigationBar: BottomAppBar(
+  height: 80,
+  color: Colors.white,
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      buildNavBarItem(Icons.home_filled, "Home", 0, context),
+      buildNavBarItem(Icons.category_rounded, "Products", 1, context),
+      buildNavBarItem(Icons.add_shopping_cart, "Cart", 2, context),
+      buildNavBarItem(Icons.notification_add_rounded, "Notifications", 3, context),
+    ],
+  ),
+),
+
       backgroundColor: Color(0xfFE9EBEA),
       body: SingleChildScrollView(
         child: Column(
@@ -117,7 +104,9 @@ class Homepage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: 10,),
+            
+             SizedBox(width: 10,),
+             
             Padding(
               padding: const EdgeInsets.only(top: 20.0, left: 18, right: 18),
               child: Row(
@@ -180,18 +169,42 @@ class Homepage extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
 
-  Widget _buildNavBarItem(IconData icon, String label, VoidCallback onPressed) {
-    return Column(
-      children: [
-        IconButton(
-          icon: Icon(icon),
-          onPressed: onPressed,
-        ),
-        Text(label),
-      ],
+
+  Widget buildNavBarItem(IconData icon, String label, int index, BuildContext context) {
+    return InkWell(
+      onTap: () {
+        switch (index) {
+          case 0:
+          // Navigate to Home screen
+            Navigator.pushNamed(context, AppRoute.homeRoute);
+            break;
+          case 1:
+          // Navigate to Products screen
+            Navigator.pushNamed(context, AppRoute.productRoute);
+            break;
+          case 2:
+          // Navigate to Cart screen
+            Navigator.pushNamed(context, AppRoute.CartRoute);
+            break;
+          case 3:
+          // Navigate to Notifications screen
+            // Navigator.pushNamed(context, AppRoute.notification);
+            break;
+        }
+      },
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.black), // Update color as needed
+          Text(
+            label,
+            style: TextStyle(color: Colors.black), // Update color as needed
+          ),
+        ],
+      ),
     );
   }
 }

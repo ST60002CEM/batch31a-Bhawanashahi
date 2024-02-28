@@ -3,6 +3,7 @@ import 'package:online_pet_shop/feature/auth/presentation/view/register_view.dar
 import 'package:online_pet_shop/feature/cart/presentation/view/cart_view.dart';
 import 'package:online_pet_shop/feature/contact/presentation/view/add_contact_view.dart';
 import 'package:online_pet_shop/feature/home/presentation/view/homepage_view.dart';
+import 'package:online_pet_shop/feature/product/presentation/view/product_view.dart';
 import 'package:online_pet_shop/feature/profile/presentation/view/profile_view.dart';
 import 'package:online_pet_shop/feature/splash/presentation/view/splashscreen_view.dart';
 
@@ -23,10 +24,10 @@ class AppRoute {
     return {
       splashRoute: (context) => const SplashScreen(),
       loginRoute: (context) => const LoginView(),
-      homeRoute: (context) => Homepage(),
+      homeRoute: (context) => const Homepage(),
       registerRoute: (context) => const RegisterView(),
       contactRoute: (context) =>  AddContactView(),
-      // productRoute: (context) =>  ProductView(),
+      productRoute: (context) =>  ProductView(),
       // CartRoute: (context) => CartView(),
       // batchStudentRoute: (context) => const BatchStudentView(null),
       // googleMapRoute: (context) => const GoogleMapView(),

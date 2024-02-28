@@ -8,6 +8,7 @@ part 'product_hive_model.g.dart';
 
 @HiveType(typeId: HiveTableConstant.productTableId)
 class ProductHiveModel {
+   
   @HiveField(0)
   final  productId;
 
@@ -26,8 +27,10 @@ class ProductHiveModel {
 
 
 
+
+
   // empty constructor
-  ProductHiveModel.empty() : this(productId: '', productName: '', productPrice: 0, productCategory: '', productImageUrl:'');
+  ProductHiveModel.empty() : this( productName: '', productPrice: 0, productCategory: '', productImageUrl:'');
 
   ProductHiveModel({
     String? productId,
@@ -35,6 +38,7 @@ class ProductHiveModel {
     required this.productPrice,
     required this.productCategory,
     required this.productImageUrl,
+
   }) : productId = productId ?? const Uuid().v4();
 
   // Convert Entity to Hive Object
@@ -43,21 +47,24 @@ class ProductHiveModel {
     productPrice: entity.productPrice,
     productCategory: entity.productCategory,
     productImageUrl: entity.productImageUrl,
+
   );
 
 
   // Convert Hive Object to Entity
   static ProductEntity toEntity(ProductHiveModel hiveModel) => ProductEntity(
+
     productId: hiveModel.productId,
     productName: hiveModel.productName,
     productPrice: hiveModel.productPrice,
     productCategory: hiveModel.productCategory,
     productImageUrl: hiveModel.productImageUrl,
+   
 
   );
 
   @override
   String toString() {
-    return 'productId: $productId, productName: $productName, productPrice:$productPrice, productCategory:$productCategory, productImageUrl:$productImageUrl ';
+    return  ' productId: $productId, productName: $productName, productPrice:$productPrice, productCategory:$productCategory, productImageUrl:$productImageUrl';
   }
 }

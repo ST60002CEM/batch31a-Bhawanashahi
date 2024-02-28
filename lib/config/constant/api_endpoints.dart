@@ -8,7 +8,7 @@ class ApiEndpoints {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWY3YWNkZTViNTI2NjhhMTE3YTRlMSIsImlhdCI6MTcwNTQ2OTMzOSwiZXhwIjoxNzA4MDYxMzM5fQ.VcvZ37ZSEDLNqufaJxJngW3mflDQvXOiTwCK-qhGsfY';
 
   // For Windows
-  // static const String baseUrl = "http://192.168.82.154:3000/api/v1/";
+  // static const String baseUrl = "http://192.168.1.254:3000/api/v1/";
   static const String baseUrl = "http://10.0.2.2:3000/api/";
 
   // ====================== Auth Routes ======================
@@ -25,6 +25,7 @@ class ApiEndpoints {
   // ====================== Batch Routes ======================
   static const String sendMessage = "contact/create_contact";
   static const String getAllContact = "contact/get_contact";
+    static const String createCart = "user/createCart";
 
   // // ====================== Course Routes ======================
   // static const String createCourse = "course/createCourse";

@@ -20,7 +20,10 @@ class ProductLocalRepositoryImpl implements IProductRepository {
   });
 
 
-
+   @override
+  Future<Either<Failure, bool>> addCart(ProductEntity product) {
+    return productLocalDataSource.addCart(product);
+  }
 
   @override
   Future<Either<Failure, List<ProductEntity>>>getAllProducts() {

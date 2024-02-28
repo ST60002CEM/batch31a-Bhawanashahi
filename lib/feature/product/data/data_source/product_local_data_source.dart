@@ -19,8 +19,16 @@ class ProductLocalDataSource {
     required this.hiveService,
   });
 
-  // Add Batch
-
+ Future<Either<Failure, bool>> addCart(ProductEntity product) async {
+    try {
+      // Convert BatchEntity to BatchHiveModel
+      ProductHiveModel productHiveModel = ProductHiveModel.toHiveModel(product);
+      hiveService.addCart(productHiveModel);
+      return const Right(true);
+    } catch (e) {
+      return Left(Failure(error: e.toString()));
+    }
+  }
 
   Future<Either<Failure, List<ProductEntity>>>getAllProducts() async {
     try {

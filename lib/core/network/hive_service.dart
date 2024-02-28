@@ -105,6 +105,10 @@ class HiveService {
     var products = box.values.toList();
     return products;
   }
+    Future<void> addCart(ProductHiveModel product) async {
+    var box = await Hive.openBox<ProductHiveModel>(HiveTableConstant.productBox);
+    await box.put(product.productId, product);
+  }
   }
 }
 
