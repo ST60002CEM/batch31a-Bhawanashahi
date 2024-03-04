@@ -28,7 +28,7 @@ class AppRoute {
       registerRoute: (context) => const RegisterView(),
       contactRoute: (context) =>  AddContactView(),
       dashRoute: (context) =>  DashboardView(),
-      // CartRoute: (context) => CartView(),
+      CartRoute: (context) => CartView(),
       // batchStudentRoute: (context) => const BatchStudentView(null),
       // googleMapRoute: (context) => const GoogleMapView(),
     };
