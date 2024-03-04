@@ -29,7 +29,7 @@ class _ProductState extends ConsumerState<DashboardView> {
             buildNavBarItem(Icons.home_filled, "Home", 0),
             buildNavBarItem(Icons.category_rounded, "Order", 1),
             buildNavBarItem(Icons.add_shopping_cart, "Cart", 2),
-            buildNavBarItem(Icons.notification_add_rounded, "Notifications", 3),
+            buildNavBarItem(Icons.person, "Profile", 3), // Change notification icon to profile icon
           ],
         ),
       ),
@@ -56,10 +56,11 @@ class _ProductState extends ConsumerState<DashboardView> {
                     ),
                   ),
                   SizedBox(width: 10),
-                  Image(
-                    height: 50,
-                    width: 40,
-                    image: AssetImage('assets/images/pp.png'),
+                  InkWell(
+                    onTap: () {
+                      // Handle notification icon tap
+                    },
+                    child: Icon(Icons.notifications), // Change to notification icon
                   ),
                   SizedBox(width: 10),
                 ],
@@ -235,26 +236,27 @@ class _ProductState extends ConsumerState<DashboardView> {
       onTap: () {
         switch (index) {
           case 0:
-          // Navigate to Home screen
+            // Navigate to Home screen
             Navigator.pushNamed(context, AppRoute.dashRoute);
             break;
           case 1:
-          // Navigate to Products screen
+            // Navigate to Products screen
             Navigator.pushNamed(context, AppRoute.orderRoute);
             break;
           case 2:
-          // Navigate to Cart screen
+            // Navigate to Cart screen
             Navigator.pushNamed(context, AppRoute.CartRoute);
             break;
           case 3:
-          // Navigate to Notifications screen
-          // Navigator.pushNamed(context, AppRoute.notification);
+            // Navigate to Profile screen
+            // Navigator.pushNamed(context, AppRoute.profileRoute);
             break;
         }
       },
       child: Column(
         children: [
-          Icon(icon, color: Colors.black), // Update color as needed
+          Icon(icon, color: Colors.black), // Update color
+
           Text(
             label,
             style: TextStyle(color: Colors.black), // Update color as needed
