@@ -41,6 +41,29 @@ class ProductRemoteDataSource {
       return Left(Failure(error: e.response?.data['message'] ?? 'Unknown error occurred'));
     }
   }
+    Future<Either<Failure, bool>> addFavourite(ProductEntity product) async {
+    try {
+      ProductAPIModel productAPIModel = ProductAPIModel.fromEntity(product);
+      var response = await dio.post(
+        ApiEndpoints.createCart,
+        data: productAPIModel.toJson(),
+      );
+
+      if (response.statusCode == 201) {
+        return const Right(true);
+      } else {
+        return Left(
+          Failure(
+            error: response.statusMessage.toString(),
+            statusCode: response.statusCode.toString(),
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return Left(Failure(error: e.response?.data['message'] ?? 'Unknown error occurred'));
+    }
+  }
+
 
 
   // Get all products

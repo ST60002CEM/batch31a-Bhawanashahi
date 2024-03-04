@@ -20,7 +20,8 @@ final productRepositoryProvider = Provider.autoDispose<IProductRepository>(
 );
 
 abstract class IProductRepository {
-    Future<Either<Failure, bool>> addCart(ProductEntity batch);
+    Future<Either<Failure, bool>> addCart(ProductEntity product);
+    Future<Either<Failure, bool>> addFavourite(ProductEntity product);
   Future<Either<Failure, List<ProductEntity>>>getAllProducts();
 
 }

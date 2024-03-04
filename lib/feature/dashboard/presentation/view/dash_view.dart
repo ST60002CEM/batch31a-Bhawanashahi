@@ -207,6 +207,12 @@ class _ProductState extends ConsumerState<DashboardView> {
                                   color: isInWishlist ? Color(0xffD8812F) : null,
                                 ),
                                 onPressed: () {
+                                  if (products != null && index < products.length) {
+                                      ProductEntity? selectedProduct = products[index];
+                                      if (selectedProduct != null) {
+                                        ref.read(productViewModelProvider.notifier).addCart(selectedProduct);
+                                      }
+                                    }
                                   setState(() {
                                     if (isInWishlist) {
                                       wishlistIndices.remove(index);

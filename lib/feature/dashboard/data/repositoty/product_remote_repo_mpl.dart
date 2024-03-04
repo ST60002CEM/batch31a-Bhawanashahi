@@ -7,8 +7,9 @@ import '../../../../core/failure/failure.dart';
 
 import '../data_source/product_remote_data_source.dart';
 
-final productRemoteRepositoryProvider = Provider.autoDispose<IProductRepository>(
-      (ref) =>ProductRemoteRepoImpl(
+final productRemoteRepositoryProvider =
+    Provider.autoDispose<IProductRepository>(
+  (ref) => ProductRemoteRepoImpl(
     productRemoteDatSource: ref.read(productRemoteDatasourceProvider),
   ),
 );
@@ -23,9 +24,13 @@ class ProductRemoteRepoImpl implements IProductRepository {
     return productRemoteDatSource.addCart(product);
   }
 
+  @override
+  Future<Either<Failure, bool>> addFavourite(ProductEntity product) {
+    return productRemoteDatSource.addCart(product);
+  }
 
   @override
-  Future<Either<Failure, List<ProductEntity>>>getAllProducts() {
+  Future<Either<Failure, List<ProductEntity>>> getAllProducts() {
     return productRemoteDatSource.getAllProducts();
   }
 

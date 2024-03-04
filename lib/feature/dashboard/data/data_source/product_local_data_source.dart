@@ -31,6 +31,17 @@ class ProductLocalDataSource {
     }
   }
 
+  Future<Either<Failure, bool>> addFavourite(ProductEntity product) async {
+    try {
+      // Convert BatchEntity to BatchHiveModel
+      ProductHiveModel productHiveModel = ProductHiveModel.toHiveModel(product);
+      hiveService.addFavourite(productHiveModel);
+      return const Right(true);
+    } catch (e) {
+      return Left(Failure(error: e.toString()));
+    }
+  }
+
   Future<Either<Failure, List<ProductEntity>>>getAllProducts() async {
     try {
       List<ProductHiveModel> products = await hiveService.getAllProducts();
