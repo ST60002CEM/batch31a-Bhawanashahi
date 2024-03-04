@@ -1,77 +1,51 @@
-// import 'package:flutter/material.dart';
-//
-//
-// class ProfileView extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Profile'),
-//       ),
-//       body: ListView(
-//         children: [
-//           DrawerOption(
-//             icon: Icons.person,
-//             title: 'Profile',
-//             onTap: () {
-//               // Handle navigation to Profile screen
-//             },
-//           ),
-//           DrawerOption(
-//             icon: Icons.shopping_cart,
-//             title: 'My Orders',
-//             onTap: () {
-//               // Handle navigation to My Orders screen
-//             },
-//           ),
-//           DrawerOption(
-//             icon: Icons.favorite,
-//             title: 'Wishlist',
-//             onTap: () {
-//               // Handle navigation to Wishlist screen
-//             },
-//           ),
-//           DrawerOption(
-//             icon: Icons.rate_review,
-//             title: 'My Reviews',
-//             onTap: () {
-//               // Handle navigation to My Reviews screen
-//             },
-//           ),
-//           DrawerOption(
-//             icon: Icons.contact_mail,
-//             title: 'Contact Us',
-//             onTap: () {
-//               // Handle navigation to Contact Us screen
-//             },
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-//
-// class DrawerOption extends StatelessWidget {
-//   final IconData icon;
-//   final String title;
-//   final VoidCallback onTap;
-//
-//   const DrawerOption({
-//     Key? key,
-//     required this.icon,
-//     required this.title,
-//     required this.onTap,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//       leading: Icon(icon),
-//       title: Text(title),
-//       onTap: onTap,
-//     );
-//   }
-// }
-//
-//
-//
+import 'package:flutter/material.dart';
+import 'package:online_pet_shop/config/router/app_route.dart';
+
+class ProfileView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to profile update page
+                Navigator.pushNamed(context, '/profile_update');
+              },
+              child: Text('Profile Update'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to wishlist page
+                Navigator.pushNamed(context, '/wishlist');
+              },
+              child: Text('My Wishlist'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to contact us page
+                Navigator.pushNamed(context,  AppRoute.contactRoute);
+              },
+              child: Text('Contact Us'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // Logout logic goes here
+              },
+              child: Text('Logout'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+

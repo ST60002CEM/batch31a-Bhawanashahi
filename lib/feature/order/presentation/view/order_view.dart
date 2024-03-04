@@ -20,7 +20,7 @@ class Order extends StatelessWidget {
       buildNavBarItem(Icons.home_filled, "Home", 0, context),
       buildNavBarItem(Icons.category_rounded, "Order", 1, context),
       buildNavBarItem(Icons.add_shopping_cart, "Cart", 2, context),
-      buildNavBarItem(Icons.notification_add_rounded, "Notifications", 3, context),
+      buildNavBarItem(Icons.person, "Profile", 3, context),
     ],
   ),
 ),

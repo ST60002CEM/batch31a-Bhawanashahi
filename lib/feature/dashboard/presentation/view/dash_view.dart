@@ -249,7 +249,7 @@ class _ProductState extends ConsumerState<DashboardView> {
             break;
           case 3:
             // Navigate to Profile screen
-            // Navigator.pushNamed(context, AppRoute.profileRoute);
+            Navigator.pushNamed(context, AppRoute.profileRoute);
             break;
         }
       },
