@@ -19,6 +19,7 @@ class ProductRemoteRepoImpl implements IProductRepository {
 
   const ProductRemoteRepoImpl({required this.productRemoteDatSource});
 
+
   @override
   Future<Either<Failure, bool>> addCart(ProductEntity product) {
     return productRemoteDatSource.addCart(product);

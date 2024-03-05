@@ -5,7 +5,6 @@ import 'package:online_pet_shop/core/network/hive_service.dart';
 import 'package:online_pet_shop/feature/auth/data/model/auth_hive_model.dart';
 import 'package:online_pet_shop/feature/auth/domain/entity/auth_entity.dart';
 
-
 final authLocalDataSourceProvider = Provider<AuthLocalDataSource>(
   (ref) => AuthLocalDataSource(ref.watch(hiveServiceProvider)),
 );

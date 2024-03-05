@@ -28,14 +28,14 @@ class ProductViewModel extends StateNotifier<ProductState> {
     getAllProduct();
   }
 
-  void addCart(ProductEntity product) {
+  void addCart( String userId, String productId, int quantity) {
     state = state.copyWith(isLoading: true);
-    addCartUsecase.addCart(product).then((value) {
+    addCartUsecase.addCart(userId as ProductEntity, productId, quantity).then((value) {
       value.fold(
         (failure) => state = state.copyWith(isLoading: false),
         (success) {
           state = state.copyWith(isLoading: false, showMessage: true);
-          getAllProduct();
+          addCart(userId, productId, quantity);
         },
       );
     });

@@ -51,12 +51,17 @@ class _ProfileViewState extends State<ProfileView> {
     return true; // Logout successful
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+ @override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('Profile'),
+    ),
+    body: Center(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ElevatedButton(
@@ -87,11 +92,21 @@ class _ProfileViewState extends State<ProfileView> {
               onPressed: () {
                 _logout(context);
               },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.pressed))
+                      return Color(0xFFD8812F); // Change color when pressed
+                    return Colors.transparent; // Use the default button color
+                  },
+                ),
+              ),
               child: Text('Logout'),
             ),
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }

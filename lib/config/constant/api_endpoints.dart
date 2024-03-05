@@ -1,14 +1,14 @@
 class ApiEndpoints {
   ApiEndpoints._();
 
-  static const Duration connectionTimeout = Duration(seconds: 1000);
-  static const Duration receiveTimeout = Duration(seconds: 1000);
+  static const Duration connectionTimeout = Duration(seconds: 10000);
+  static const Duration receiveTimeout = Duration(seconds: 10000);
 
   final String token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWY3YWNkZTViNTI2NjhhMTE3YTRlMSIsImlhdCI6MTcwNTQ2OTMzOSwiZXhwIjoxNzA4MDYxMzM5fQ.VcvZ37ZSEDLNqufaJxJngW3mflDQvXOiTwCK-qhGsfY';
 
   // For Windows
-  // static const String baseUrl = "http://192.168.1.254:3000/api/user";
+  // static const String baseUrl = "http://192.168.56.1:3000/api/";
   static const String baseUrl = "http://10.0.2.2:3000/api/";
 
   // ====================== Auth Routes ======================
@@ -25,7 +25,7 @@ class ApiEndpoints {
   // ====================== Batch Routes ======================
   static const String sendMessage = "contact/create_contact";
   static const String getAllContact = "contact/get_contact";
-    static const String createCart = "cart/create_cart";
+  static const String createCart = "cart/create_cart";
   static const String createFavourites = "user/create_favourite";
 
   // // ====================== Course Routes ======================
@@ -33,5 +33,4 @@ class ApiEndpoints {
   // static const String deleteCourse = "course/";
   // static const String getAllCourse = "course/getAllCourse";
   //
-
 }

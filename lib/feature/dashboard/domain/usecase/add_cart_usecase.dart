@@ -14,7 +14,7 @@ class AddCartUsecase {
 
   AddCartUsecase({required this.repository});
 
-  Future<Either<Failure, bool>> addCart(ProductEntity product) async {
+  Future<Either<Failure, bool>> addCart(ProductEntity product, String productId, int quantity) async {
     return await repository.addCart(product);
   }
 }
