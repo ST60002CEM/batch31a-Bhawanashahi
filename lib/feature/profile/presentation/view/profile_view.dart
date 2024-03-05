@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:all_sensors2/all_sensors2.dart';
 import 'package:flutter/material.dart';
 import 'package:online_pet_shop/config/router/app_route.dart';
-import 'package:sensors_plus/sensors_plus.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -10,44 +10,62 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  late StreamSubscription<AccelerometerEvent> _accelerometerSubscription;
+  double _proximityValue = 0;
+  final List<StreamSubscription<dynamic>> _streamSubscription = [];
 
   @override
   void initState() {
+    bool initialEventProcessed = false;
+
+    _streamSubscription.add(proximityEvents!.listen((event) {
+      if (!initialEventProcessed) {
+        initialEventProcessed = true;
+        return;
+      }
+
+      setState(() {
+        _proximityValue = event.proximity;
+        if (_proximityValue >= 4) {
+          _performLogout();
+        }
+      });
+    }));
+
     super.initState();
-    _initAccelerometerListener();
   }
 
   @override
   void dispose() {
-    _accelerometerSubscription.cancel();
+    for (var subscription in _streamSubscription) {
+      subscription.cancel();
+    }
     super.dispose();
   }
 
-  void _initAccelerometerListener() {
-    _accelerometerSubscription = accelerometerEvents.listen((event) {
-      double y = event.y;
-      double threshold = 9.0;
-
-      if (y < -threshold) {
-        _logout(context);
-      }
-    });
-  }
-
-  Future<bool> _logout(BuildContext context) async {
-    // Perform logout logic here
-    // For demonstration purposes, assuming logout is successful immediately
-    // Replace this with your actual logout logic
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      AppRoute.loginRoute,
-          (route) => false,
+  void _performLogout() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Are you sure you want to logout?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // ref.read(homeViewModelProvider.notifier).signOut(context);
+              Navigator.pushReplacementNamed(context, AppRoute.loginRoute);
+            },
+            child: const Text('Yes'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            // Navigator.pushReplacementNamed(context, AppRoute.loginRoute);
+            // },
+            child: const Text('No'),
+          ),
+        ],
+      ),
     );
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Logout successful')),
-    );
-    return true; // Logout successful
   }
 
   @override
@@ -55,7 +73,8 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        backgroundColor: Color(0xFFD8812F), // Set app bar color
+        backgroundColor:
+            Color(0xFFD8812F), // Foreveryoung Beauty App's theme color
       ),
       body: Center(
         child: Padding(
@@ -70,9 +89,13 @@ class _ProfileViewState extends State<ProfileView> {
                   Navigator.pushNamed(context, '/profile_update');
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFD8812F), // Set button color
+                  primary:
+                      Colors.white, // Foreveryoung Beauty App's button color
+                  onPrimary: Color(
+                      0xFFD8812F), // Foreveryoung Beauty App's button text color
                 ),
-                child: Text('Profile Update', style: TextStyle(color: Colors.white)), // Set text color
+                child: Text(
+                    'Profile Update'), // Foreveryoung Beauty App's button text style
               ),
               SizedBox(height: 16),
               ElevatedButton(
@@ -81,9 +104,13 @@ class _ProfileViewState extends State<ProfileView> {
                   Navigator.pushNamed(context, AppRoute.favoriteRoute);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFD8812F), // Set button color
+                  primary:
+                      Colors.white, // Foreveryoung Beauty App's button color
+                  onPrimary: Color(
+                      0xFFD8812F), // Foreveryoung Beauty App's button text color
                 ),
-                child: Text('My Wishlist', style: TextStyle(color: Colors.white)), // Set text color
+                child: Text(
+                    'My Wishlist'), // Foreveryoung Beauty App's button text style
               ),
               SizedBox(height: 16),
               ElevatedButton(
@@ -92,19 +119,27 @@ class _ProfileViewState extends State<ProfileView> {
                   Navigator.pushNamed(context, AppRoute.contactRoute);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFD8812F), // Set button color
+                  primary:
+                      Colors.white, // Foreveryoung Beauty App's button color
+                  onPrimary: Color(
+                      0xFFD8812F), // Foreveryoung Beauty App's button text color
                 ),
-                child: Text('Contact Us', style: TextStyle(color: Colors.white)), // Set text color
+                child: Text(
+                    'Contact Us'), // Foreveryoung Beauty App's button text style
               ),
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  _logout(context);
+                  Navigator.popAndPushNamed(context, AppRoute.loginRoute);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFD8812F), // Set button color
+                  primary:
+                      Colors.white, // Foreveryoung Beauty App's button color
+                  onPrimary: Color(
+                      0xFFD8812F), // Foreveryoung Beauty App's button text color
                 ),
-                child: Text('Logout', style: TextStyle(color: Colors.white)), // Set text color
+                child: Text(
+                    'Logout'), // Foreveryoung Beauty App's button text style
               ),
             ],
           ),
@@ -126,7 +161,8 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-  Widget buildNavBarItem(IconData icon, String label, int index, BuildContext context) {
+  Widget buildNavBarItem(
+      IconData icon, String label, int index, BuildContext context) {
     return InkWell(
       onTap: () {
         switch (index) {
@@ -140,14 +176,14 @@ class _ProfileViewState extends State<ProfileView> {
             Navigator.pushNamed(context, AppRoute.CartRoute);
             break;
           case 3:
-          // Navigate to Profile screen (current screen)
+            // Navigate to Profile screen (current screen)
             break;
         }
       },
       child: Column(
         children: [
-          Icon(icon, color: Color(0xFFD8812F)), // Set icon color
-          Text(label, style: TextStyle(color: Color(0xFFD8812F))), // Set text color
+          Icon(icon, color: Colors.black),
+          Text(label, style: TextStyle(color: Colors.black)),
         ],
       ),
     );

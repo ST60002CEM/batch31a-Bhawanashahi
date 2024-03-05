@@ -13,11 +13,20 @@ class DashboardView extends ConsumerStatefulWidget {
 
 class _ProductState extends ConsumerState<DashboardView> {
   Set<int> wishlistIndices = Set<int>();
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     final productState = ref.watch(productViewModelProvider);
     List<ProductEntity?>? products = productState.products;
+
 
     return Scaffold(
       bottomNavigationBar: BottomAppBar(

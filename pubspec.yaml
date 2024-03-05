@@ -50,6 +50,7 @@ dependencies:
   permission_handler: ^11.1.0
   json_annotation: ^4.8.1
   sensors_plus: ^4.0.2
+  all_sensors2: ^1.0.1
 
 
 dev_dependencies:
