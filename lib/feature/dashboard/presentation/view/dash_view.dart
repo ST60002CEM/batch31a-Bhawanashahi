@@ -175,6 +175,20 @@ class _ProductState extends ConsumerState<DashboardView> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          TextField(
+  onChanged: (value) {
+    // Update the quantity based on user input
+    // You can store this quantity in your UI state or pass it directly to the addCart method
+    final int quantity = int.tryParse(value) ?? 1;
+    // Update the quantity in your state or call addCart with the updated quantity
+  },
+  keyboardType: TextInputType.number, // Allow numeric input
+  decoration: InputDecoration(
+    labelText: 'Quantity',
+    // Add any other decoration or validation as needed
+  ),
+),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -210,7 +224,7 @@ class _ProductState extends ConsumerState<DashboardView> {
                                   if (products != null && index < products.length) {
                                       ProductEntity? selectedProduct = products[index];
                                       if (selectedProduct != null) {
-                                        ref.read(productViewModelProvider.notifier).addCart(selectedProduct);
+                                        ref.read(productViewModelProvider.notifier).addFavourite(selectedProduct);
                                       }
                                     }
                                   setState(() {

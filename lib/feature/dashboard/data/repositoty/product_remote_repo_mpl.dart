@@ -26,7 +26,7 @@ class ProductRemoteRepoImpl implements IProductRepository {
 
   @override
   Future<Either<Failure, bool>> addFavourite(ProductEntity product) {
-    return productRemoteDatSource.addCart(product);
+    return productRemoteDatSource.addFavourite(product);
   }
 
   @override

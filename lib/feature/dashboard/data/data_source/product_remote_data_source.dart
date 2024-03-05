@@ -11,6 +11,8 @@ import 'package:online_pet_shop/feature/dashboard/domain/entity/product.entity.d
 final productRemoteDatasourceProvider = Provider.autoDispose<ProductRemoteDataSource>(
       (ref) => ProductRemoteDataSource(
     dio: ref.read(httpServiceProvider),
+    
+        
   ),
 );
 
@@ -19,28 +21,29 @@ class ProductRemoteDataSource {
 
   ProductRemoteDataSource({required this.dio});
 
-   Future<Either<Failure, bool>> addCart(ProductEntity product) async {
-    try {
-      ProductAPIModel productAPIModel = ProductAPIModel.fromEntity(product);
-      var response = await dio.post(
-        ApiEndpoints.createCart,
-        data: productAPIModel.toJson(),
-      );
+  Future<Either<Failure, bool>> addCart(ProductEntity product) async {
+  try {
+    ProductAPIModel productAPIModel = ProductAPIModel.fromEntity(product);
+    var response = await dio.post(
+      ApiEndpoints.createCart,
+      data: productAPIModel.toJson(),
+    );
 
-      if (response.statusCode == 201) {
-        return const Right(true);
-      } else {
-        return Left(
-          Failure(
-            error: response.statusMessage.toString(),
-            statusCode: response.statusCode.toString(),
-          ),
-        );
-      }
-    } on DioException catch (e) {
-      return Left(Failure(error: e.response?.data['message'] ?? 'Unknown error occurred'));
+    if (response.statusCode == 201) {
+      return const Right(true);
+    } else {
+      return Left(
+        Failure(
+          error: response.statusMessage.toString(),
+          statusCode: response.statusCode.toString(),
+        ),
+      );
     }
+  } on DioException catch (e) {
+    return Left(Failure(error: e.response?.data['message'] ?? 'Unknown error occurred'));
   }
+}
+
     Future<Either<Failure, bool>> addFavourite(ProductEntity product) async {
     try {
       ProductAPIModel productAPIModel = ProductAPIModel.fromEntity(product);

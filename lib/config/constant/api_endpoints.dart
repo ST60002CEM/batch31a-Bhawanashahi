@@ -8,7 +8,7 @@ class ApiEndpoints {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWY3YWNkZTViNTI2NjhhMTE3YTRlMSIsImlhdCI6MTcwNTQ2OTMzOSwiZXhwIjoxNzA4MDYxMzM5fQ.VcvZ37ZSEDLNqufaJxJngW3mflDQvXOiTwCK-qhGsfY';
 
   // For Windows
-  // static const String baseUrl = "http://192.168.56.1:3000/api/";
+  // static const String baseUrl = "http://192.168.1.254:3000/api/user";
   static const String baseUrl = "http://10.0.2.2:3000/api/";
 
   // ====================== Auth Routes ======================

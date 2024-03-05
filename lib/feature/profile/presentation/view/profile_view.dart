@@ -70,7 +70,7 @@ class _ProfileViewState extends State<ProfileView> {
             ElevatedButton(
               onPressed: () {
                 // Navigate to wishlist page
-                Navigator.pushNamed(context, '/wishlist');
+                Navigator.pushNamed(context, AppRoute.favoriteRoute);
               },
               child: Text('My Wishlist'),
             ),
