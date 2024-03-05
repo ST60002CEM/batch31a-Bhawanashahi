@@ -1,21 +1,21 @@
 // // GENERATED CODE - DO NOT MODIFY BY HAND
 //
-// part of 'get_all_product_dto.dart';
+// part of 'get_all_order_dto.dart';
 //
 // // **************************************************************************
 // // JsonSerializableGenerator
 // // **************************************************************************
 //
-// GetAllHomeDTO _$GetAllHomeDTOFromJson(Map<String, dynamic> json) =>
-//     GetAllHomeDTO(
+// GetAllOrderDTO _$GetAllOrderDTOFromJson(Map<String, dynamic> json) =>
+//     GetAllOrderDTO(
 //       success: json['success'] as bool,
 //       count: json['count'] as int,
 //       data: (json['data'] as List<dynamic>)
-//           .map((e) => HomeAPIModel.fromJson(e as Map<String, dynamic>))
+//           .map((e) => OrderAPIModel.fromJson(e as Map<String, dynamic>))
 //           .toList(),
 //     );
 //
-// Map<String, dynamic> _$GetAllHomeDTOToJson(GetAllHomeDTO instance) =>
+// Map<String, dynamic> _$GetAllOrderDTOToJson(GetAllOrderDTO instance) =>
 //     <String, dynamic>{
 //       'success': instance.success,
 //       'count': instance.count,

@@ -1,9 +1,9 @@
 // import 'package:json_annotation/json_annotation.dart';
 //
-// import '../model/home_api_model.dart';
+// import '../model/order_api_model.dart';
 //
 //
-// part 'get_all_product_dto.g.dart';
+// part 'get_all_order_dto.g.dart';
 //
 // //dart run build_runner build --delete-conflicting-outputs
 //
@@ -13,14 +13,14 @@
 //   final int count;
 //   final List<HomeAPIModel> data;
 //
-//   GetAllHomeDTO({
+//   GetAllOrderDTO({
 //     required this.success,
 //     required this.count,
 //     required this.data,
 //   });
 //
-//   factory GetAllHomeDTO.fromJson(Map<String, dynamic> json) =>
-//       _$GetAllHomeDTOFromJson(json);
+//   factory GetAllOrderDTO.fromJson(Map<String, dynamic> json) =>
+//       _$GetAllOrderDTOFromJson(json);
 //
-//   Map<String, dynamic> toJson() => _$GetAllHomeDTOToJson(this);
+//   Map<String, dynamic> toJson() => _$GetAllOrderDTOToJson(this);
 // }
