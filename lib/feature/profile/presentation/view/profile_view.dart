@@ -73,8 +73,7 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        backgroundColor:
-            Color(0xFFD8812F), // Foreveryoung Beauty App's theme color
+        backgroundColor: Colors.black,
       ),
       body: Center(
         child: Padding(
@@ -83,63 +82,43 @@ class _ProfileViewState extends State<ProfileView> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ElevatedButton(
+              // Image widget for the banner
+              Image.asset(
+                'assets/images/b.png',
+                height: 200, // Adjust the height as needed
+                fit: BoxFit.cover,
+              ),
+              SizedBox(height: 16),
+              _buildOptionButton(
+                icon: Icons.person,
+                label: 'Profile Update',
                 onPressed: () {
-                  // Navigate to profile update page
                   Navigator.pushNamed(context, '/profile_update');
                 },
-                style: ElevatedButton.styleFrom(
-                  primary:
-                      Colors.white, // Foreveryoung Beauty App's button color
-                  onPrimary: Color(
-                      0xFFD8812F), // Foreveryoung Beauty App's button text color
-                ),
-                child: Text(
-                    'Profile Update'), // Foreveryoung Beauty App's button text style
               ),
               SizedBox(height: 16),
-              ElevatedButton(
+              _buildOptionButton(
+                icon: Icons.favorite,
+                label: 'My Wishlist',
                 onPressed: () {
-                  // Navigate to wishlist page
                   Navigator.pushNamed(context, AppRoute.favoriteRoute);
                 },
-                style: ElevatedButton.styleFrom(
-                  primary:
-                      Colors.white, // Foreveryoung Beauty App's button color
-                  onPrimary: Color(
-                      0xFFD8812F), // Foreveryoung Beauty App's button text color
-                ),
-                child: Text(
-                    'My Wishlist'), // Foreveryoung Beauty App's button text style
               ),
               SizedBox(height: 16),
-              ElevatedButton(
+              _buildOptionButton(
+                icon: Icons.contact_support,
+                label: 'Contact Us',
                 onPressed: () {
-                  // Navigate to contact us page
                   Navigator.pushNamed(context, AppRoute.contactRoute);
                 },
-                style: ElevatedButton.styleFrom(
-                  primary:
-                      Colors.white, // Foreveryoung Beauty App's button color
-                  onPrimary: Color(
-                      0xFFD8812F), // Foreveryoung Beauty App's button text color
-                ),
-                child: Text(
-                    'Contact Us'), // Foreveryoung Beauty App's button text style
               ),
               SizedBox(height: 16),
-              ElevatedButton(
+              _buildOptionButton(
+                icon: Icons.logout,
+                label: 'Logout',
                 onPressed: () {
                   Navigator.popAndPushNamed(context, AppRoute.loginRoute);
                 },
-                style: ElevatedButton.styleFrom(
-                  primary:
-                      Colors.white, // Foreveryoung Beauty App's button color
-                  onPrimary: Color(
-                      0xFFD8812F), // Foreveryoung Beauty App's button text color
-                ),
-                child: Text(
-                    'Logout'), // Foreveryoung Beauty App's button text style
               ),
             ],
           ),
@@ -151,17 +130,41 @@ class _ProfileViewState extends State<ProfileView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            buildNavBarItem(Icons.home_filled, "Home", 0, context),
-            buildNavBarItem(Icons.category_rounded, "Order", 1, context),
-            buildNavBarItem(Icons.add_shopping_cart, "Cart", 2, context),
-            buildNavBarItem(Icons.person, "Profile", 3, context),
+            _buildNavBarItem(Icons.home_filled, "Home", 0, context),
+            _buildNavBarItem(Icons.category_rounded, "Order", 1, context),
+            _buildNavBarItem(Icons.add_shopping_cart, "Cart", 2, context),
+            _buildNavBarItem(Icons.person, "Profile", 3, context),
           ],
         ),
       ),
     );
   }
 
-  Widget buildNavBarItem(
+  Widget _buildOptionButton({
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        primary: Colors.white,
+        onPrimary: Color(0xFFD8812F),
+        elevation: 3,
+        padding: EdgeInsets.symmetric(vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      icon: Icon(icon),
+      label: Text(
+        label,
+        style: TextStyle(fontSize: 16),
+      ),
+    );
+  }
+
+  Widget _buildNavBarItem(
       IconData icon, String label, int index, BuildContext context) {
     return InkWell(
       onTap: () {
@@ -176,7 +179,7 @@ class _ProfileViewState extends State<ProfileView> {
             Navigator.pushNamed(context, AppRoute.CartRoute);
             break;
           case 3:
-            // Navigate to Profile screen (current screen)
+            Navigator.pushNamed(context, AppRoute.profileRoute);
             break;
         }
       },

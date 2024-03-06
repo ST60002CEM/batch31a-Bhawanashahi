@@ -28,7 +28,7 @@ class AppRoute {
     return {
       splashRoute: (context) => const SplashScreen(),
       loginRoute: (context) => const LoginView(),
-      orderRoute: (context) =>  Order(),
+      orderRoute: (context) =>  OrderView(),
       registerRoute: (context) => const RegisterView(),
       contactRoute: (context) =>  AddContactView(),
       dashRoute: (context) =>  DashboardView(),

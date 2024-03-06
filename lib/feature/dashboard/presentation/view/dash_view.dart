@@ -21,103 +21,63 @@ class _ProductState extends ConsumerState<DashboardView> {
     _searchController = TextEditingController();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final productState = ref.watch(productViewModelProvider);
     List<ProductEntity?>? products = productState.products;
 
-
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        height: 80,
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            buildNavBarItem(Icons.home_filled, "Home", 0),
-            buildNavBarItem(Icons.category_rounded, "Order", 1),
-            buildNavBarItem(Icons.add_shopping_cart, "Cart", 2),
-            buildNavBarItem(Icons.person, "Profile", 3), // Change notification icon to profile icon
-          ],
-        ),
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: Text('Dashboard'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              // Handle notification icon tap
+            },
+            icon: Icon(Icons.notifications),
+          ),
+        ],
       ),
-      backgroundColor: Color(0xfFE9EBEA),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 60, left: 18, right: 10),
-              child: Row(
-                children: [
-                  Container(
-                    height: 50,
-                    width: 320,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        hintText: 'Search Pet and Pet Products..',
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Color(0xffD8812F)),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: 'Search Pet and Pet Products...',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  SizedBox(width: 10),
-                  InkWell(
-                    onTap: () {
-                      // Handle notification icon tap
-                    },
-                    child: Icon(Icons.notifications), // Change to notification icon
-                  ),
-                  SizedBox(width: 10),
-                ],
+                ),
               ),
             ),
-            Image(
-              image: AssetImage('assets/images/banner.png'),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: Row(
-                children: [
-                  Container(
-                    height: 5,
-                    width: 130,
-                    color: Colors.black,
-                  )
-                ],
+            SizedBox(height: 10),
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/b.png'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0.0, left: 280),
-              child: Row(
-                children: [
-                  Container(
-                    height: 5,
-                    width: 130,
-                    color: Colors.black,
-                  )
-                ],
+            SizedBox(height: 20),
+            Text(
+              'Available Pet and Pet Products',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
+              textAlign: TextAlign.center,
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Pet and Pet Products",
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            SizedBox(height: 20),
             ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
@@ -125,39 +85,30 @@ class _ProductState extends ConsumerState<DashboardView> {
               itemBuilder: (context, index) {
                 ProductEntity? product = products?[index];
                 bool isInWishlist = wishlistIndices.contains(index);
-                return GestureDetector(
-                  onTap: () {
-                    // Handle onTap logic here
-                  },
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                   child: Card(
                     elevation: 3.0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      side: const BorderSide(color: Colors.black, width: 1.0),
                     ),
                     child: ListTile(
                       contentPadding: const EdgeInsets.all(8.0),
                       leading: Container(
-                        width: 120,
-                        height: 230,
+                        width: 100,
+                        height: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          color: const Color.fromRGBO(180, 200, 157, 1),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: Image.network(
-                            product?.productImageUrl ?? '',
-                            width: 100,
-                            height: 400,
+                          color: Colors.grey[300],
+                          image: DecorationImage(
+                            image: NetworkImage(product?.productImageUrl ?? ''),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                       title: Text(
                         product?.productName ?? '',
-                        style: const TextStyle(
-                          color: Color(0xffD8812F),
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18.0,
                         ),
@@ -165,87 +116,54 @@ class _ProductState extends ConsumerState<DashboardView> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Text(
-                              'Category: ${product?.productCategory ?? ''}',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          SizedBox(height: 4),
+                          Text(
+                            'Category: ${product?.productCategory ?? ''}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
+                          SizedBox(height: 4),
                           Text(
                             'Price: ${product?.productPrice ?? ''}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-//                           TextField(
-//   onChanged: (value) {
-//     // Update the quantity based on user input
-//     // You can store this quantity in your UI state or pass it directly to the addCart method
-//     final int quantity = int.tryParse(value) ?? 1;
-//     // Update the quantity in your state or call addCart with the updated quantity
-//   },
-//   keyboardType: TextInputType.number, // Allow numeric input
-//   decoration: InputDecoration(
-//     labelText: 'Quantity',
-//     // Add any other decoration or validation as needed
-//   ),
-// ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 150,
-                                child: TextButton(
-                                  onPressed: () {
-                                    if (products != null && index < products.length) {
-                                      ProductEntity? selectedProduct = products[index];
-                                      if (selectedProduct != null) {
-
-                                      }
-                                    }
-                                  },
-                                  child: Text(
-                                    'Add to Cart',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: Color(0xffD8812F),
-                                    primary: Colors.black,
-                                  ),
-                                ),
+                        ],
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              isInWishlist ? Icons.favorite : Icons.favorite_border,
+                              color: isInWishlist ? Colors.red : Colors.grey,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                if (isInWishlist) {
+                                  wishlistIndices.remove(index);
+                                } else {
+                                  wishlistIndices.add(index);
+                                }
+                              });
+                            },
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              // Add to cart logic here
+                            },
+                            child: Text(
+                              'Add to Cart',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
                               ),
-                              IconButton(
-                                icon: Icon(
-                                  isInWishlist ? Icons.favorite : Icons.favorite_border,
-                                  color: isInWishlist ? Color(0xffD8812F) : null,
-                                ),
-                                onPressed: () {
-                                  if (products != null && index < products.length) {
-                                      ProductEntity? selectedProduct = products[index];
-                                      if (selectedProduct != null) {
-                                        ref.read(productViewModelProvider.notifier).addFavourite(selectedProduct);
-                                      }
-                                    }
-                                  setState(() {
-                                    if (isInWishlist) {
-                                      wishlistIndices.remove(index);
-                                    } else {
-                                      wishlistIndices.add(index);
-                                    }
-                                  });
-                                },
-                              ),
-                            ],
+                            ),
+                            style: TextButton.styleFrom(
+                              backgroundColor: Color(0xffD8812F),
+                              primary: Colors.white,
+                            ),
                           ),
                         ],
                       ),
@@ -257,41 +175,39 @@ class _ProductState extends ConsumerState<DashboardView> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            buildNavBarItem(Icons.home_filled, "Home", 0),
+            buildNavBarItem(Icons.category_rounded, "Order", 1),
+            buildNavBarItem(Icons.add_shopping_cart, "Cart", 2),
+            buildNavBarItem(Icons.person, "Profile", 3),
+          ],
+        ),
+      ),
     );
   }
 
   Widget buildNavBarItem(IconData icon, String label, int index) {
-    return InkWell(
-      onTap: () {
+    return IconButton(
+      icon: Icon(icon),
+      onPressed: () {
         switch (index) {
           case 0:
-            // Navigate to Home screen
             Navigator.pushNamed(context, AppRoute.dashRoute);
             break;
           case 1:
-            // Navigate to Products screen
             Navigator.pushNamed(context, AppRoute.orderRoute);
             break;
           case 2:
-            // Navigate to Cart screen
             Navigator.pushNamed(context, AppRoute.CartRoute);
             break;
           case 3:
-            // Navigate to Profile screen
             Navigator.pushNamed(context, AppRoute.profileRoute);
             break;
         }
       },
-      child: Column(
-        children: [
-          Icon(icon, color: Colors.black), // Update color
-
-          Text(
-            label,
-            style: TextStyle(color: Colors.black), // Update color as needed
-          ),
-        ],
-      ),
     );
   }
 }
